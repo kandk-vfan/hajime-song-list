@@ -1,22 +1,29 @@
 let data = [];
-let songs = {};
 
 fetch("data.json")
   .then(res => res.json())
   .then(json => {
     data = json;
-    aggregate();
-    render();
+    renderAll();
   });
 
-function aggregate() {
-  songs = {};
+function renderAll() {
+  renderSongs();
+  renderStreams();
+  renderArtists();
+}
 
-  data.forEach(d => {
+//
+// 曲一覧
+//
+function renderSongs(list = data) {
+  const map = {};
+
+  list.forEach(d => {
     const key = d.songId;
 
-    if (!songs[key]) {
-      songs[key] = {
+    if (!map[key]) {
+      map[key] = {
         title: d.title,
         artist: d.artist,
         count: 0,
@@ -24,45 +31,115 @@ function aggregate() {
       };
     }
 
-    songs[key].count++;
+    map[key].count++;
 
-    if (new Date(d.date) > new Date(songs[key].latest.date)) {
-      songs[key].latest = d;
+    if (new Date(d.date) > new Date(map[key].latest.date)) {
+      map[key].latest = d;
     }
   });
-}
 
-function render(list = Object.values(songs)) {
-  const tbody = document.querySelector("tbody");
+  const arr = Object.values(map);
+  arr.sort((a, b) => a.title.localeCompare(b.title));
+
+  const tbody = document.getElementById("songsBody");
   tbody.innerHTML = "";
 
-  list.sort((a, b) => a.title.localeCompare(b.title));
-
-  list.forEach(s => {
+  arr.forEach(s => {
     const tr = document.createElement("tr");
 
     tr.innerHTML = `
       <td>${s.title}</td>
       <td>${s.artist}</td>
       <td>${s.count}</td>
-      <td><button onclick="play('${s.latest.videoId}', '${s.latest.time}')">再生</button></td>
+      <td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
     `;
 
     tbody.appendChild(tr);
   });
 }
 
-document.getElementById("search").addEventListener("input", e => {
-  const val = e.target.value.toLowerCase();
+//
+// 配信一覧
+//
+function renderStreams() {
+  const map = {};
 
-  const filtered = Object.values(songs).filter(s =>
-    s.title.toLowerCase().includes(val) ||
-    s.artist.toLowerCase().includes(val)
-  );
+  data.forEach(d => {
+    if (!map[d.videoId]) {
+      map[d.videoId] = {
+        title: d.videoTitle,
+        songs: [],
+      };
+    }
+    map[d.videoId].songs.push(d.title);
+  });
 
-  render(filtered);
-});
+  const tbody = document.getElementById("streamsBody");
+  tbody.innerHTML = "";
 
+  Object.entries(map).forEach(([videoId, s]) => {
+    const tr = document.createElement("tr");
+
+    tr.innerHTML = `
+      <td><a href="https://youtube.com/watch?v=${videoId}" target="_blank">${s.title}</a></td>
+      <td>${[...new Set(s.songs)].join(", ")}</td>
+    `;
+
+    tbody.appendChild(tr);
+  });
+}
+
+//
+// アーティスト
+//
+function renderArtists() {
+  const map = {};
+
+  data.forEach(d => {
+    if (!map[d.artist]) map[d.artist] = {};
+
+    if (!map[d.artist][d.songId]) {
+      map[d.artist][d.songId] = {
+        title: d.title,
+        count: 0,
+      };
+    }
+
+    map[d.artist][d.songId].count++;
+  });
+
+  const tbody = document.getElementById("artistsBody");
+  tbody.innerHTML = "";
+
+  Object.entries(map).forEach(([artist, songs]) => {
+    Object.values(songs).forEach(s => {
+      const tr = document.createElement("tr");
+
+      tr.innerHTML = `
+        <td>${artist}</td>
+        <td>${s.title}</td>
+        <td>${s.count}</td>
+      `;
+
+      tbody.appendChild(tr);
+    });
+  });
+}
+
+//
+// タブ切り替え
+//
+function showTab(id) {
+  ["songs", "streams", "artists"].forEach(t => {
+    document.getElementById(t).classList.add("hidden");
+  });
+
+  document.getElementById(id).classList.remove("hidden");
+}
+
+//
+// 再生
+//
 function play(videoId, time) {
   const sec = toSeconds(time);
   const url = `https://www.youtube.com/embed/${videoId}?start=${sec}`;
@@ -79,6 +156,19 @@ function closeModal() {
 }
 
 function toSeconds(t) {
-  const parts = t.split(":").map(Number);
-  return parts.reduce((a, b) => a * 60 + b);
+  return t.split(":").map(Number).reduce((a, b) => a * 60 + b);
 }
+
+//
+// 検索
+//
+document.getElementById("search").addEventListener("input", e => {
+  const val = e.target.value.toLowerCase();
+
+  const filtered = data.filter(d =>
+    d.title.toLowerCase().includes(val) ||
+    d.artist.toLowerCase().includes(val)
+  );
+
+  renderSongs(filtered);
+});
