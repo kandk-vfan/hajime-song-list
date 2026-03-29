@@ -17,38 +17,32 @@ function renderAll(){
   renderArtists();
 }
 
-//
-// 曲一覧
-//
 function renderSongs(){
-  const map = {};
+  const map={};
 
   data.forEach(d=>{
-    const k = key(d);
-
+    const k=key(d);
     if(!map[k]){
       map[k]={title:d.title,artist:d.artist,count:0,latest:d};
     }
-
     map[k].count++;
-
     if(new Date(d.date)>new Date(map[k].latest.date)){
       map[k].latest=d;
     }
   });
 
-  let arr = Object.values(map);
+  let arr=Object.values(map);
 
-  const keyword = document.getElementById("searchSongs").value.toLowerCase();
+  const keyword=document.getElementById("searchSongs").value.toLowerCase();
 
   if(keyword){
-    arr = arr.filter(s =>
+    arr=arr.filter(s =>
       s.title.toLowerCase().includes(keyword) ||
       s.artist.toLowerCase().includes(keyword)
     );
   }
 
-  const sort = document.getElementById("sortSongs").value;
+  const sort=document.getElementById("sortSongs").value;
 
   arr.sort((a,b)=>{
     if(sort==="artist") return a.artist.localeCompare(b.artist);
@@ -56,7 +50,7 @@ function renderSongs(){
     return a.title.localeCompare(b.title);
   });
 
-  const tbody = document.getElementById("songsBody");
+  const tbody=document.getElementById("songsBody");
   tbody.innerHTML="";
 
   arr.forEach(s=>{
@@ -65,43 +59,32 @@ function renderSongs(){
 <td>${s.title}</td>
 <td>${s.artist}</td>
 <td>${s.count}</td>
-<td>
-<button onclick="play('${s.latest.videoId}','${s.latest.time}')">
-▶ 最新
-</button>
-</td>
+<td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
 </tr>`;
   });
 }
 
-//
-// 配信一覧（改善版）
-//
 function renderStreams(){
   const map={};
 
   data.forEach(d=>{
     if(!map[d.videoId]){
-      map[d.videoId]={
-        title:d.videoTitle,
-        date:d.date,
-        songs:[]
-      };
+      map[d.videoId]={title:d.videoTitle,date:d.date,songs:[]};
     }
     map[d.videoId].songs.push(d);
   });
 
-  let arr = Object.entries(map);
-  arr.sort((a,b)=> new Date(b[1].date)-new Date(a[1].date));
+  let arr=Object.entries(map);
+  arr.sort((a,b)=>new Date(b[1].date)-new Date(a[1].date));
 
-  const keyword = document.getElementById("searchStreams").value.toLowerCase();
+  const keyword=document.getElementById("searchStreams").value.toLowerCase();
 
-  const container = document.getElementById("streamsContainer");
+  const container=document.getElementById("streamsContainer");
   container.innerHTML="";
 
   arr.forEach(([vid,v])=>{
 
-    const match = v.songs.some(s =>
+    const match=v.songs.some(s =>
       !keyword ||
       s.title.toLowerCase().includes(keyword) ||
       s.artist.toLowerCase().includes(keyword)
@@ -109,7 +92,7 @@ function renderStreams(){
 
     if(!match) return;
 
-    const div = document.createElement("div");
+    const div=document.createElement("div");
     div.className="card";
 
     div.innerHTML=`
@@ -131,28 +114,22 @@ ${v.songs.map((s,i)=>`
   });
 }
 
-//
-// アーティスト
-//
 function renderArtists(){
   const map={};
 
   data.forEach(d=>{
     if(!map[d.artist]) map[d.artist]={};
-
     const k=key(d);
-
     if(!map[d.artist][k]){
       map[d.artist][k]={title:d.title,count:0};
     }
-
     map[d.artist][k].count++;
   });
 
   let artists=Object.keys(map);
 
   const sort=document.getElementById("sortArtists").value;
-  artists.sort((a,b)=> sort==="desc"?b.localeCompare(a):a.localeCompare(b));
+  artists.sort((a,b)=>sort==="desc"?b.localeCompare(a):a.localeCompare(b));
 
   const keyword=document.getElementById("searchArtists").value.toLowerCase();
 
@@ -161,7 +138,6 @@ function renderArtists(){
 
   artists.forEach(a=>{
     Object.values(map[a]).forEach(s=>{
-
       if(keyword && !(
         s.title.toLowerCase().includes(keyword) ||
         a.toLowerCase().includes(keyword)
@@ -177,9 +153,6 @@ function renderArtists(){
   });
 }
 
-//
-// UI
-//
 function showTab(id){
   ["songs","streams","artists"].forEach(t=>{
     document.getElementById(t).classList.add("hidden");
@@ -196,7 +169,7 @@ function play(videoId,time){
 
 function closeModal(){
   document.getElementById("modal").classList.add("hidden");
-  document.getElementById("player").innerHTML=""; // ←再生停止
+  document.getElementById("player").innerHTML="";
 }
 
 function formatDate(d){
@@ -204,13 +177,10 @@ function formatDate(d){
   return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")} ${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`;
 }
 
-//
-// イベント
-//
-document.getElementById("searchSongs").addEventListener("input", renderSongs);
-document.getElementById("sortSongs").addEventListener("change", renderSongs);
+document.getElementById("searchSongs").addEventListener("input",renderSongs);
+document.getElementById("sortSongs").addEventListener("change",renderSongs);
 
-document.getElementById("searchStreams").addEventListener("input", renderStreams);
+document.getElementById("searchStreams").addEventListener("input",renderStreams);
 
-document.getElementById("searchArtists").addEventListener("input", renderArtists);
-document.getElementById("sortArtists").addEventListener("change", renderArtists);
+document.getElementById("searchArtists").addEventListener("input",renderArtists);
+document.getElementById("sortArtists").addEventListener("change",renderArtists);
