@@ -1,60 +1,104 @@
 const fs = require("fs");
+const https = require("https");
 
-const input = fs.readFileSync("songs.txt", "utf-8");
-const lines = input.split("\n");
+const API_KEY = process.env.YOUTUBE_API_KEY;
+const text = fs.readFileSync("songs.txt", "utf-8");
+const lines = text.split(/\r?\n/);
 
-let currentVideoId = "";
-const results = [];
+let videoId = "";
+let videoInfo = null;
+let results = [];
 
 function extractVideoId(url) {
-  const m = url.match(/v=([^&]+)/);
-  return m ? m[1] : "";
-}
+  const patterns = [
+    /[?&]v=([^&]+)/,
+    /youtu\.be\/([^?&/]+)/,
+    /youtube\.com\/live\/([^?&/]+)/,
+    /youtube\.com\/embed\/([^?&/]+)/
+  ];
 
-function isTimeLine(line) {
-  return /^\d{1,2}:\d{2}:\d{2}\s/.test(line);
-}
-
-function parseLine(line) {
-  if (!isTimeLine(line)) return null;
-
-  const firstSpace = line.indexOf(" ");
-  const time = line.slice(0, firstSpace);
-  const rest = line.slice(firstSpace + 1);
-
-  let title = rest;
-  let artist = "";
-
-  if (rest.includes(" / ")) {
-    const parts = rest.split(" / ");
-    title = parts[0].trim();
-    artist = parts.slice(1).join(" / ").trim();
+  for (const pattern of patterns) {
+    const match = url.match(pattern);
+    if (match) return match[1];
   }
 
-  return { time, title, artist };
+  return "";
 }
 
-lines.forEach(line => {
-  line = line.trim();
+function fetchVideoInfo(videoId) {
+  return new Promise((resolve, reject) => {
+    if (!API_KEY) {
+      reject(new Error("Missing YOUTUBE_API_KEY"));
+      return;
+    }
 
-  if (!line) return;
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
 
-  if (line.startsWith("video:")) {
-    const url = line.replace("video:", "").trim();
-    currentVideoId = extractVideoId(url);
-    return;
-  }
+    https.get(url, (res) => {
+      let data = "";
 
-  const parsed = parseLine(line);
-  if (!parsed) return;
+      res.on("data", chunk => {
+        data += chunk;
+      });
 
-  results.push({
-    videoId: currentVideoId,
-    time: parsed.time,
-    title: parsed.title,
-    artist: parsed.artist,
-    date: new Date().toISOString()
+      res.on("end", () => {
+        try {
+          const json = JSON.parse(data);
+
+          if (!json.items || json.items.length === 0) {
+            reject(new Error(`Invalid videoId: ${videoId}`));
+            return;
+          }
+
+          resolve({
+            title: json.items[0].snippet.title,
+            date: json.items[0].snippet.publishedAt
+          });
+        } catch (error) {
+          reject(error);
+        }
+      });
+    }).on("error", reject);
   });
-});
+}
 
-fs.writeFileSync("data.json", JSON.stringify(results, null, 2));
+function parseSongLine(line) {
+  const match = line.match(/^(\d{1,2}:\d{2}:\d{2})\s+(.+?)\s\/\s(.+)$/);
+
+  if (!match) return null;
+
+  return {
+    time: match[1].trim(),
+    title: match[2].trim(),
+    artist: match[3].trim()
+  };
+}
+
+(async () => {
+  for (let rawLine of lines) {
+    const line = rawLine.trim();
+
+    if (!line) continue;
+
+    if (line.startsWith("video:")) {
+      const url = line.replace(/^video:\s*/, "");
+      videoId = extractVideoId(url);
+      videoInfo = await fetchVideoInfo(videoId);
+      continue;
+    }
+
+    const parsed = parseSongLine(line);
+    if (!parsed || !videoId || !videoInfo) continue;
+
+    results.push({
+      title: parsed.title,
+      artist: parsed.artist,
+      videoId,
+      videoTitle: videoInfo.title,
+      date: videoInfo.date,
+      time: parsed.time
+    });
+  }
+
+  fs.writeFileSync("data.json", JSON.stringify(results, null, 2));
+})();
