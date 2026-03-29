@@ -208,9 +208,29 @@ button:hover{
   background:#111827;
 }
 
+body.streams-light .card{
+  background:#ffffff;
+  color:#0f172a;
+}
+
 .song-card.highlight{
   border-color:#3b82f6;
   background:#1e293b;
+}
+
+body.streams-light .song-card{
+  background:#f8fafc;
+  border-color:#cbd5e1;
+  color:#0f172a;
+}
+
+body.streams-light .song-card-title{
+  color:#0f172a;
+}
+
+body.streams-light .song-card.highlight{
+  background:#e2e8f0;
+  border-color:#3b82f6;
 }
 
 .stream-title-row{
@@ -224,6 +244,10 @@ button:hover{
   font-size:14px;
   color:#94a3b8;
   margin-bottom:14px;
+}
+
+body.streams-light .stream-date{
+  color:#64748b;
 }
 
 .grid{
@@ -263,10 +287,23 @@ button:hover{
   word-break:break-all;
 }
 
+body.streams-light .song-card-artist{
+  color:#64748b;
+}
+
 .num{
   font-size:14px;
   font-weight:700;
   color:#94a3b8;
+}
+
+body.streams-light .num{
+  color:#64748b;
+}
+
+table.light .artist-header{
+  background:#e2e8f0;
+  color:#0f172a;
 }
 
 .artist-header{
@@ -303,37 +340,6 @@ iframe{
   height:min(78vh,900px);
   border:0;
   border-radius:12px;
-}
-
-body.streams-light .card{
-  background:#ffffff;
-  border-color:#cbd5e1;
-}
-
-body.streams-light .stream-title-row a{
-  color:#2563eb;
-}
-
-body.streams-light .stream-date{
-  color:#64748b;
-}
-
-body.streams-light .song-card{
-  background:#f8fafc;
-  border-color:#cbd5e1;
-}
-
-body.streams-light .song-card.highlight{
-  background:#e2e8f0;
-  border-color:#3b82f6;
-}
-
-body.streams-light .song-card-artist{
-  color:#64748b;
-}
-
-body.streams-light .num{
-  color:#64748b;
 }
 
 @media (max-width: 1200px){
