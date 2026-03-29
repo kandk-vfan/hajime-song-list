@@ -139,54 +139,71 @@ ${unique.map((s,i)=>`
 }
 
 function renderArtists(){
-  const map={};
+  const map = {};
 
   data.forEach(d=>{
-    if(!map[d.artist]) map[d.artist]={};
-    const k=key(d);
+    if(!map[d.artist]) map[d.artist] = {};
+    const k = key(d);
+
     if(!map[d.artist][k]){
-      map[d.artist][k]={title:d.title,count:0};
+      map[d.artist][k] = { title:d.title, count:0 };
     }
+
     map[d.artist][k].count++;
   });
 
-  let rows=[];
-
-  Object.keys(map).forEach(a=>{
-    Object.values(map[a]).forEach(s=>{
-      rows.push({artist:a,title:s.title,count:s.count});
-    });
-  });
+  let artists = Object.keys(map);
 
   const keyword=document.getElementById("searchArtists").value.toLowerCase();
+
   if(keyword){
-    rows=rows.filter(r =>
-      r.artist.toLowerCase().includes(keyword) ||
-      r.title.toLowerCase().includes(keyword)
+    artists = artists.filter(a =>
+      a.toLowerCase().includes(keyword) ||
+      Object.values(map[a]).some(s =>
+        s.title.toLowerCase().includes(keyword)
+      )
     );
   }
 
   const type=document.getElementById("sortArtistsType").value;
   const order=document.getElementById("sortArtistsOrder").value;
 
-  rows.sort((a,b)=>{
-    let res=0;
-    if(type==="title") res=a.title.localeCompare(b.title);
-    else if(type==="count") res=a.count-b.count;
-    else res=a.artist.localeCompare(b.artist);
+  artists.sort((a,b)=>{
+    let res=a.localeCompare(b);
     return order==="desc"?-res:res;
   });
 
-  const tbody=document.getElementById("artistsBody");
-  tbody.innerHTML="";
+  const container=document.getElementById("artistsContainer");
+  container.innerHTML="";
 
-  rows.forEach(r=>{
-    tbody.innerHTML+=`
-<tr>
-<td>${r.artist}</td>
-<td>${r.title}</td>
-<td>${r.count}</td>
-</tr>`;
+  artists.forEach(a=>{
+
+    let songs = Object.values(map[a]);
+
+    songs.sort((x,y)=>{
+      let res=0;
+      if(type==="count") res=x.count-y.count;
+      else res=x.title.localeCompare(y.title);
+      return order==="desc"?-res:res;
+    });
+
+    const block=document.createElement("div");
+    block.className="artist-block";
+
+    block.innerHTML=`
+<div class="artist-name">${a}</div>
+
+<div class="artist-songs">
+${songs.map(s=>`
+<div class="artist-song">
+<span class="artist-song-title">${s.title}</span>
+<span class="artist-song-count">${s.count}回</span>
+</div>
+`).join("")}
+</div>
+`;
+
+    container.appendChild(block);
   });
 }
 

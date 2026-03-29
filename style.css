@@ -101,7 +101,7 @@ button:hover{
   background:#334155;
 }
 
-/* カード */
+/* 配信カード */
 
 .card{
   border:1px solid #334155;
@@ -119,12 +119,10 @@ button:hover{
 }
 
 .stream-date{
-  font-size:15px;
+  font-size:14px;
   color:#94a3b8;
   margin-bottom:14px;
 }
-
-/* グリッド */
 
 .grid{
   display:grid;
@@ -143,12 +141,16 @@ button:hover{
   gap:10px;
 }
 
-/* ←ここがメイン改善ポイント */
+.song-card-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
 
 .song-card-title{
   font-size:16px;
   line-height:1.5;
-  word-break:break-word;
+  word-break:break-all;
   font-weight:600;
 }
 
@@ -156,7 +158,7 @@ button:hover{
   font-size:14px;
   color:#94a3b8;
   line-height:1.5;
-  word-break:break-word;
+  word-break:break-all;
 }
 
 .num{
@@ -165,10 +167,40 @@ button:hover{
   color:#94a3b8;
 }
 
-.song-card-head{
+/* アーティスト */
+
+.artist-block{
+  margin-bottom:24px;
+  padding:16px;
+  border:1px solid #334155;
+  border-radius:12px;
+  background:#111827;
+}
+
+.artist-name{
+  font-size:18px;
+  font-weight:700;
+  margin-bottom:10px;
+}
+
+.artist-songs{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.artist-song{
   display:flex;
   justify-content:space-between;
-  align-items:center;
+  font-size:14px;
+}
+
+.artist-song-title{
+  word-break:break-all;
+}
+
+.artist-song-count{
+  color:#94a3b8;
 }
 
 /* モーダル */

@@ -12,7 +12,7 @@
 <div class="tabs">
   <button class="tab-button active" onclick="showTab('songs', this)">曲一覧</button>
   <button class="tab-button" onclick="showTab('streams', this)">配信一覧</button>
-  <button class="tab-button" onclick="showTab('artists', this)">アーティスト</button>
+  <button class="tab-button" onclick="showTab('artists', this)">アーティスト別</button>
 </div>
 
 <div id="songs" class="section">
@@ -63,16 +63,7 @@
     </select>
   </div>
 
-  <table>
-    <thead>
-      <tr>
-        <th>アーティスト</th>
-        <th>曲</th>
-        <th>回数</th>
-      </tr>
-    </thead>
-    <tbody id="artistsBody"></tbody>
-  </table>
+  <div id="artistsContainer"></div>
 </div>
 
 <div id="modal" class="hidden">
