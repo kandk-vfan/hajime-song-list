@@ -6,31 +6,27 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
-
 <h1>🦊💙🎵 hajime Song List</h1>
 
 <div class="tabs">
-  <button onclick="showTab('songs')">曲一覧</button>
-  <button onclick="showTab('streams')">配信一覧</button>
-  <button onclick="showTab('artists')">アーティスト</button>
+  <button id="tabSongs" class="tab-button active" onclick="showTab('songs')">曲一覧</button>
+  <button id="tabStreams" class="tab-button" onclick="showTab('streams')">配信一覧</button>
+  <button id="tabArtists" class="tab-button" onclick="showTab('artists')">アーティスト</button>
+</div>
+
+<div class="toolbar">
+  <input id="searchInput" placeholder="">
+  <select id="sortSelect"></select>
 </div>
 
 <div id="songs" class="section">
-  <div class="toolbar">
-    <input id="searchSongs" placeholder="曲・アーティスト検索">
-    <select id="sortSongs">
-      <option value="title">曲名順</option>
-      <option value="artist">アーティスト順</option>
-      <option value="count">回数順</option>
-    </select>
-  </div>
   <table>
     <thead>
       <tr>
         <th>曲名</th>
         <th>アーティスト</th>
         <th>回数</th>
-        <th>再生（最新）</th>
+        <th>再生（最新配信）</th>
       </tr>
     </thead>
     <tbody id="songsBody"></tbody>
@@ -38,20 +34,10 @@
 </div>
 
 <div id="streams" class="hidden section">
-  <div class="toolbar">
-    <input id="searchStreams" placeholder="曲・アーティスト検索">
-  </div>
   <div id="streamsContainer"></div>
 </div>
 
 <div id="artists" class="hidden section">
-  <div class="toolbar">
-    <input id="searchArtists" placeholder="曲・アーティスト検索">
-    <select id="sortArtists">
-      <option value="asc">昇順</option>
-      <option value="desc">降順</option>
-    </select>
-  </div>
   <table>
     <thead>
       <tr>
@@ -67,7 +53,9 @@
 <div id="modal" class="hidden">
   <div class="modal-content">
     <div id="player"></div>
-    <button onclick="closeModal()">閉じる</button>
+    <div class="modal-actions">
+      <button onclick="closeModal()">閉じる</button>
+    </div>
   </div>
 </div>
 
