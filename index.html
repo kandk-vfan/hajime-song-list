@@ -5,7 +5,7 @@
 <title>🦊💙🎵 hajime Songs</title>
 <link rel="stylesheet" href="style.css">
 </head>
-<body class="dark">
+<body>
 
 <h1>🦊💙🎵 hajime Song List</h1>
 
@@ -28,28 +28,22 @@
       <option value="desc">降順</option>
     </select>
   </div>
-
   <table>
     <thead>
-      <tr>
-        <th>曲名</th>
-        <th>アーティスト</th>
-        <th>回数</th>
-        <th>再生（最新配信）</th>
-      </tr>
+      <tr><th>曲名</th><th>アーティスト</th><th>回数</th><th>再生</th></tr>
     </thead>
     <tbody id="songsBody"></tbody>
   </table>
 </div>
 
-<div id="streams" class="hidden section">
+<div id="streams" class="section hidden">
   <div class="toolbar">
     <input id="searchStreams" placeholder="曲・アーティスト検索">
   </div>
   <div id="streamsContainer"></div>
 </div>
 
-<div id="artists" class="hidden section">
+<div id="artists" class="section hidden">
   <div class="toolbar">
     <input id="searchArtists" placeholder="曲・アーティスト検索">
     <select id="sortArtistsOrder">
@@ -57,7 +51,6 @@
       <option value="desc">降順</option>
     </select>
   </div>
-
   <table>
     <tbody id="artistsBody"></tbody>
   </table>
@@ -66,9 +59,7 @@
 <div id="modal" class="hidden">
   <div class="modal-content">
     <div id="player"></div>
-    <div class="modal-actions">
-      <button onclick="closeModal()">閉じる</button>
-    </div>
+    <button onclick="closeModal()">閉じる</button>
   </div>
 </div>
 
