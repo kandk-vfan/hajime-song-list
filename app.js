@@ -1,20 +1,30 @@
 let data = [];
-let songsCache = [];
 
 fetch("data.json")
-  .then(res => res.json())
-  .then(json => {
-    data = json;
-    buildSongs();
+  .then(r => r.json())
+  .then(j => {
+    data = j;
     renderAll();
   });
 
-function buildSongs() {
+//
+// 共通キー（最重要）
+//
+function key(d) {
+  return d.title + "||" + d.artist;
+}
+
+//
+// 曲一覧
+//
+function renderSongs() {
   const map = {};
 
   data.forEach(d => {
-    if (!map[d.songId]) {
-      map[d.songId] = {
+    const k = key(d);
+
+    if (!map[k]) {
+      map[k] = {
         title: d.title,
         artist: d.artist,
         count: 0,
@@ -22,27 +32,14 @@ function buildSongs() {
       };
     }
 
-    map[d.songId].count++;
+    map[k].count++;
 
-    if (new Date(d.date) > new Date(map[d.songId].latest.date)) {
-      map[d.songId].latest = d;
+    if (new Date(d.date) > new Date(map[k].latest.date)) {
+      map[k].latest = d;
     }
   });
 
-  songsCache = Object.values(map);
-}
-
-function renderAll() {
-  renderSongs();
-  renderStreams();
-  renderArtists();
-}
-
-//
-// 曲一覧（修正済み）
-//
-function renderSongs() {
-  let arr = [...songsCache];
+  let arr = Object.values(map);
 
   const keyword = document.getElementById("search").value.toLowerCase();
 
@@ -53,15 +50,12 @@ function renderSongs() {
     );
   }
 
-  const sortType = document.getElementById("sort").value;
+  const sort = document.getElementById("sortSongs").value;
 
-  arr.sort((a, b) => {
-    switch (sortType) {
-      case "title_desc": return b.title.localeCompare(a.title);
-      case "artist_asc": return a.artist.localeCompare(b.artist);
-      case "artist_desc": return b.artist.localeCompare(a.artist);
-      case "count_desc": return b.count - a.count;
-      case "count_asc": return a.count - b.count;
+  arr.sort((a,b)=>{
+    switch(sort){
+      case "count": return b.count - a.count;
+      case "artist": return a.artist.localeCompare(b.artist);
       default: return a.title.localeCompare(b.title);
     }
   });
@@ -69,121 +63,144 @@ function renderSongs() {
   const tbody = document.getElementById("songsBody");
   tbody.innerHTML = "";
 
-  arr.forEach(s => {
-    const tr = document.createElement("tr");
-
-    tr.innerHTML = `
-      <td>${s.title}</td>
-      <td>${s.artist}</td>
-      <td>${s.count}</td>
-      <td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
-    `;
-
-    tbody.appendChild(tr);
+  arr.forEach(s=>{
+    tbody.innerHTML += `
+<tr>
+<td>${s.title}</td>
+<td>${s.artist}</td>
+<td>${s.count}</td>
+<td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
+</tr>`;
   });
 }
 
 //
-// 配信一覧（カード化）
+// 配信一覧（カード + 連番 + 日付）
 //
 function renderStreams() {
   const map = {};
 
-  data.forEach(d => {
-    if (!map[d.videoId]) {
-      map[d.videoId] = {
-        title: d.videoTitle,
-        songs: [],
+  data.forEach(d=>{
+    if(!map[d.videoId]){
+      map[d.videoId]={
+        title:d.videoTitle,
+        date:d.date,
+        songs:[]
       };
     }
-    map[d.videoId].songs.push(d.title);
+    map[d.videoId].songs.push(d);
   });
 
+  let arr = Object.entries(map);
+
+  arr.sort((a,b)=> new Date(b[1].date) - new Date(a[1].date));
+
   const container = document.getElementById("streamsContainer");
-  container.innerHTML = "";
+  container.innerHTML="";
 
-  Object.entries(map).forEach(([videoId, s]) => {
-    const div = document.createElement("div");
-    div.className = "card";
+  arr.forEach(([vid,v],i)=>{
+    const card = document.createElement("div");
+    card.className="card";
 
-    div.innerHTML = `
-      <a href="https://youtube.com/watch?v=${videoId}" target="_blank">${s.title}</a>
-      <div class="song-grid">
-        ${[...new Set(s.songs)].map(t => `<span>${t}</span>`).join("")}
-      </div>
-    `;
+    card.innerHTML=`
+<a href="https://youtube.com/watch?v=${vid}" target="_blank">${v.title}</a>
+<div class="date">${new Date(v.date).toLocaleString()}</div>
+<div class="grid">
+${v.songs.map((s,i)=>`
+<div class="song">
+<span class="num">${String(i+1).padStart(2,"0")}</span>
+<span>${s.title}</span>
+</div>
+`).join("")}
+</div>
+`;
 
-    container.appendChild(div);
+    container.appendChild(card);
   });
 }
 
 //
-// アーティスト（昇順デフォルト）
+// アーティスト（ソート対応）
 //
 function renderArtists() {
   const map = {};
 
-  data.forEach(d => {
-    if (!map[d.artist]) map[d.artist] = {};
+  data.forEach(d=>{
+    if(!map[d.artist]) map[d.artist]={};
 
-    if (!map[d.artist][d.songId]) {
-      map[d.artist][d.songId] = {
-        title: d.title,
-        count: 0,
-      };
+    const k = key(d);
+
+    if(!map[d.artist][k]){
+      map[d.artist][k]={title:d.title,count:0};
     }
 
-    map[d.artist][d.songId].count++;
+    map[d.artist][k].count++;
   });
 
+  let artists = Object.keys(map);
+
+  const sort = document.getElementById("sortArtists").value;
+
+  if(sort==="desc"){
+    artists.sort((a,b)=>b.localeCompare(a));
+  }else{
+    artists.sort((a,b)=>a.localeCompare(b));
+  }
+
   const tbody = document.getElementById("artistsBody");
-  tbody.innerHTML = "";
+  tbody.innerHTML="";
 
-  Object.keys(map)
-    .sort((a, b) => a.localeCompare(b))
-    .forEach(artist => {
-      Object.values(map[artist]).forEach(s => {
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = `
-          <td>${artist}</td>
-          <td>${s.title}</td>
-          <td>${s.count}</td>
-        `;
-
-        tbody.appendChild(tr);
-      });
+  artists.forEach(a=>{
+    Object.values(map[a]).forEach(s=>{
+      tbody.innerHTML+=`
+<tr>
+<td>${a}</td>
+<td>${s.title}</td>
+<td>${s.count}</td>
+</tr>`;
     });
+  });
 }
 
 //
 // UI
 //
-function showTab(id) {
-  ["songs", "streams", "artists"].forEach(t => {
+function renderAll(){
+  initSort();
+  renderSongs();
+  renderStreams();
+  renderArtists();
+}
+
+function initSort(){
+  document.getElementById("sortSongs").innerHTML=`
+<option value="title">曲名</option>
+<option value="artist">アーティスト</option>
+<option value="count">回数</option>`;
+
+  document.getElementById("sortArtists").innerHTML=`
+<option value="asc">昇順</option>
+<option value="desc">降順</option>`;
+}
+
+function showTab(id){
+  ["songs","streams","artists"].forEach(t=>{
     document.getElementById(t).classList.add("hidden");
   });
   document.getElementById(id).classList.remove("hidden");
 }
 
-function play(videoId, time) {
-  const sec = toSeconds(time);
-  const url = `https://www.youtube.com/embed/${videoId}?start=${sec}`;
-
-  document.getElementById("player").innerHTML =
-    `<iframe src="${url}" allowfullscreen></iframe>`;
-
+function play(videoId,time){
+  const sec=time.split(":").reduce((a,b)=>a*60+Number(b));
+  document.getElementById("player").innerHTML=
+`<iframe src="https://www.youtube.com/embed/${videoId}?start=${sec}" allowfullscreen></iframe>`;
   document.getElementById("modal").classList.remove("hidden");
 }
 
-function closeModal() {
+function closeModal(){
   document.getElementById("modal").classList.add("hidden");
-  document.getElementById("player").innerHTML = "";
-}
-
-function toSeconds(t) {
-  return t.split(":").map(Number).reduce((a, b) => a * 60 + b);
 }
 
 document.getElementById("search").addEventListener("input", renderSongs);
-document.getElementById("sort").addEventListener("change", renderSongs);
+document.getElementById("sortSongs").addEventListener("change", renderSongs);
+document.getElementById("sortArtists").addEventListener("change", renderArtists);
