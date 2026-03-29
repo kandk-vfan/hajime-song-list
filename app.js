@@ -6,22 +6,21 @@ function getTheme(){
   return localStorage.getItem(STORAGE_KEY) || "dark";
 }
 
-function setTheme(theme){
-  localStorage.setItem(STORAGE_KEY, theme);
+function applyTheme(){
+  const theme = getTheme();
+  document.getElementById("songsTable").classList.toggle("light", theme === "light");
+  document.getElementById("artistsTable").classList.toggle("light", theme === "light");
+}
+
+function toggleTheme(){
+  const next = getTheme() === "dark" ? "light" : "dark";
+  localStorage.setItem(STORAGE_KEY, next);
   applyTheme();
   updateButtons();
 }
 
-function applyTheme(){
-  const theme = getTheme();
-  document.getElementById("songsTable").className = theme;
-  document.getElementById("artistsTable").className = theme;
-}
-
 function updateButtons(){
-  const theme = getTheme();
-  const next = theme === "dark" ? "ライト" : "ダーク";
-
+  const next = getTheme() === "dark" ? "ライト" : "ダーク";
   document.getElementById("themeToggleSongs").innerText = next;
   document.getElementById("themeToggleArtists").innerText = next;
 }
@@ -268,10 +267,5 @@ document.getElementById("searchStreams").addEventListener("input", renderStreams
 document.getElementById("searchArtists").addEventListener("input", renderArtists);
 document.getElementById("sortArtistsOrder").addEventListener("change", renderArtists);
 
-document.getElementById("themeToggleSongs").addEventListener("click", ()=>{
-  setTheme(getTheme() === "dark" ? "light" : "dark");
-});
-
-document.getElementById("themeToggleArtists").addEventListener("click", ()=>{
-  setTheme(getTheme() === "dark" ? "light" : "dark");
-});
+document.getElementById("themeToggleSongs").addEventListener("click", toggleTheme);
+document.getElementById("themeToggleArtists").addEventListener("click", toggleTheme);
