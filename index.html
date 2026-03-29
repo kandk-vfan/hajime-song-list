@@ -6,20 +6,29 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
+
 <h1>🦊💙🎵 hajime Song List</h1>
 
 <div class="tabs">
-  <button id="tabSongs" class="tab-button active" onclick="showTab('songs')">曲一覧</button>
-  <button id="tabStreams" class="tab-button" onclick="showTab('streams')">配信一覧</button>
-  <button id="tabArtists" class="tab-button" onclick="showTab('artists')">アーティスト</button>
-</div>
-
-<div class="toolbar">
-  <input id="searchInput" placeholder="">
-  <select id="sortSelect"></select>
+  <button class="tab-button active" onclick="showTab('songs', this)">曲一覧</button>
+  <button class="tab-button" onclick="showTab('streams', this)">配信一覧</button>
+  <button class="tab-button" onclick="showTab('artists', this)">アーティスト</button>
 </div>
 
 <div id="songs" class="section">
+  <div class="toolbar">
+    <input id="searchSongs" placeholder="曲・アーティスト検索">
+    <select id="sortSongsType">
+      <option value="title">曲名</option>
+      <option value="artist">アーティスト</option>
+      <option value="count">回数</option>
+    </select>
+    <select id="sortSongsOrder">
+      <option value="asc">昇順</option>
+      <option value="desc">降順</option>
+    </select>
+  </div>
+
   <table>
     <thead>
       <tr>
@@ -34,10 +43,26 @@
 </div>
 
 <div id="streams" class="hidden section">
+  <div class="toolbar">
+    <input id="searchStreams" placeholder="曲・アーティスト検索">
+  </div>
   <div id="streamsContainer"></div>
 </div>
 
 <div id="artists" class="hidden section">
+  <div class="toolbar">
+    <input id="searchArtists" placeholder="曲・アーティスト検索">
+    <select id="sortArtistsType">
+      <option value="artist">アーティスト</option>
+      <option value="title">曲名</option>
+      <option value="count">回数</option>
+    </select>
+    <select id="sortArtistsOrder">
+      <option value="asc">昇順</option>
+      <option value="desc">降順</option>
+    </select>
+  </div>
+
   <table>
     <thead>
       <tr>
