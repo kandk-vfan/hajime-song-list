@@ -6,7 +6,7 @@ function normalize(str){
   return str.replace(/^[\s　]+|[\s　]+$/g, "");
 }
 
-function debounce(fn, delay=200){
+function debounce(fn, delay=300){
   let timer;
   return (...args)=>{
     clearTimeout(timer);
@@ -123,10 +123,10 @@ function renderSongs(){
   });
 
   const tbody=document.getElementById("songsBody");
-  tbody.innerHTML="";
 
+  let html="";
   arr.forEach(s=>{
-    tbody.innerHTML+=`
+    html+=`
 <tr>
 <td>${s.title}</td>
 <td>${s.artist}</td>
@@ -134,6 +134,8 @@ function renderSongs(){
 <td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
 </tr>`;
   });
+
+  tbody.innerHTML=html;
 }
 
 function renderArtists(){
@@ -173,24 +175,28 @@ function renderArtists(){
   });
 
   const tbody=document.getElementById("artistsBody");
-  tbody.innerHTML="";
 
+  let html="";
   artists.forEach(a=>{
     const count = map[a].size;
 
-    tbody.innerHTML+=`
+    html+=`
 <tr class="artist-header">
 <td colspan="2">${a} (${count}曲)</td>
 </tr>`;
 
-    Array.from(map[a]).sort().forEach(t=>{
-      tbody.innerHTML+=`
+    const songs = Array.from(map[a]).sort();
+
+    songs.forEach(t=>{
+      html+=`
 <tr class="artist-song-row">
 <td></td>
 <td>${t}</td>
 </tr>`;
     });
   });
+
+  tbody.innerHTML=html;
 }
 
 function renderStreams(){
