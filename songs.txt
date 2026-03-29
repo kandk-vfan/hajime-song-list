@@ -48,7 +48,7 @@ video: https://www.youtube.com/watch?v=BOThjfkiO48
 
 0:07:35 KICK BACK / 米津玄師
 0:13:30 ともに / WANIMA
-0:20:06 いらないもの / なとりとキタニタツヤ
+0:20:06 いらないもの / キタニタツヤ✕なとり
 0:26:21 ただ君に晴れ / ヨルシカ
 0:35:17 品川ナンバー / 相対性理論
 0:42:48 ガーネット / 奥華子
@@ -96,11 +96,11 @@ video: https://www.youtube.com/watch?v=8_1soTKNTx8
 0:30:23 地獄先生 / 相対性理論
 0:37:42 星座になれたら / 結束バンド
 0:45:34 水流のロック / 日食なつこ
-0:51:46 ファンサ / mona(夏川椎菜)
+0:51:46 ファンサ / HoneyWorks feat.mona(夏川椎菜)
 1:01:50 シャンティ / wotaku
 1:06:00 シャンティ / wotaku
 1:11:53 IRIS OUT / 米津玄師
-1:16:32 Os-宇宙人 / 神聖かまってちゃん
+1:16:32 Os-宇宙人 / エリオをかまってちゃん
 1:21:45 恋ノ行方 / あかせあかり
 1:27:39 Midnight Mayoi / Mori Calliope × Kobo Kanaeru
 1:33:17 Boom / Team ahamo
@@ -146,11 +146,11 @@ video: https://www.youtube.com/watch?v=4sQVoCLjac0
 0:41:53 祝日天国 / 35.7
 0:52:45 オドループ / フレデリック
 0:59:21 分かってないよ / WurtS
-1:05:19 25ｺ目の染色体 / RADWIMPS
+1:05:19 25コ目の染色体 / RADWIMPS
 1:12:38 最大公約数 / RADWIMPS
 1:19:34 愛 / 大塚愛
 1:29:05 あなた / 宇多田ヒカル
-1:36:55 secret base ～君がくれたもの～ / ZONE
+1:36:55 secret base～君がくれたもの～ / ZONE
 1:45:28 フェイク / Mr.Children
 1:52:02 ハレンチ / ちゃんみな
 1:59:28 B級 / ちゃんみな
@@ -207,7 +207,7 @@ video: https://www.youtube.com/watch?v=3SQDZEmQUM4
 
 video: https://www.youtube.com/watch?v=lkQiXgkJzAo
 
-0:07:03 リノコシティ / 40mP
+0:07:03 トリノコシティ / 40mP
 0:13:51 春に一番近い街 / 40mP
 0:22:39 GALLOWS BELL / BuzzG
 0:28:31 アルビノ / BuzzG
@@ -303,7 +303,7 @@ video: https://www.youtube.com/watch?v=xncFuXrdFOw
 0:50:41 エクレア / 岡崎体育
 1:00:23 ROSE / HANA
 1:06:02 a little pain / OLIVIA inspi'REIRA
-1:13:00 黒い涙 / 土屋アンナ
+1:13:00 黒い涙 / ANNA TSUCHIYA inspi' NANA(BLACK STONES)
 1:23:08 モニタリング / DECO*27
 1:29:12 シネマ / Ayase
 1:37:37 1925 / T-POCKET
@@ -492,7 +492,7 @@ video: https://www.youtube.com/watch?v=QXrL7S1eRY0
 0:40:34 コンプリケイション / ROOKiEZ is PUNK'D
 0:50:06 Trust Me / 松下優也
 1:00:00 Red fraction / MELL
-1:06:36 サムライハート / SPYAIR
+1:06:36 サムライハート(Some Like It Hot!!) / SPYAIR
 1:12:58 風を食む / ヨルシカ
 1:25:41 The Beginning / ONE OK ROCK
 1:33:12 KICK BACK / 米津玄師
@@ -607,7 +607,7 @@ video: https://www.youtube.com/watch?v=lfIrxcuI-WE
 1:58:07 Never Grow Up / ちゃんみな
 2:03:22 そばにいるね / 青山テルマ
 2:11:08 Lonely Hearts / 加藤ミリヤ
-2:19:37 今夜はブキー・バック / 小沢健二
+2:19:37 今夜はブギー・バック / 小沢健二 featuring スチャダラパー
 2:28:50 ともに / WANIMA
 2:34:32 asphyxia / Cö shu Nie
 2:41:15 01 / 女王蜂
@@ -632,7 +632,7 @@ video: https://www.youtube.com/watch?v=bhONSAhYu1k
 1:37:27 怪獣 / サカナクション
 1:47:06 祝日天国 / 35.7
 1:58:30 雨とカプチーノ / ヨルシカ
-2:06:08 デジタルラブ / WurtS
+2:06:08 デジタルラブ / WurtS feat. 星街すいせい
 2:12:46 HELLO ～Paradise Kiss～ / YUI
 2:19:36 女狐 / ロス
 2:24:22 寄り酔い / 和ぬか
@@ -653,38 +653,38 @@ video: https://www.youtube.com/watch?v=X9A67fU20gg
 1:51:07 織姫とBABY / ねぐせ。
 2:06:53 風を食む / ヨルシカ
 2:16:52 remember you / YUI
-2:23:45 ninelie / Aimer
+2:23:45 ninelie / Aimer with chelly(EGOIST)
 2:32:54 Perfect Day / supercell
 2:40:52 All Alone With You / EGOIST
 
 video: https://www.youtube.com/watch?v=CqeSuQN8Oqs
 
-0:06:15 #01. SAKURAドロップス / 宇多田ヒカル
-0:14:11 #02. HEART STATION / 宇多田ヒカル
-0:22:24 #03. Prisoner Of Love / 宇多田ヒカル
-0:31:19 #04. あなた / 宇多田ヒカル
-0:40:34 #05. fragile / Every Little Thing
-0:50:36 #06. 帝国少女 / R Sound Design
-0:58:47 #07. flos / R Sound Design
-1:06:48 #08. 翡翠のまち / メル
-1:16:28 #09. 心做し / 蝶々P
-1:24:31 #10. アヤノの幸福理論 / じん
-1:35:56 #11. スウィートタイム / Easy Pop
-1:45:26 #12. サイノウサンプラー / koyori(電ポルP)
-1:51:28 #13. 小夜子 / みきとP
-1:58:33 #14. 夢と葉桜 / 青木月光
-2:05:53 #15. 風のとおり道 / 井上あずみ
-2:15:11 #16. Arrietty's Song / セシル・コルベル
-2:20:53 #17. 世界の約束 / 倍賞千恵子
-2:30:05 #18. JANE DOE / 米津玄師・宇多田ヒカル
-2:36:23 #19. 藍 / スキマスイッチ
+0:06:15 SAKURAドロップス / 宇多田ヒカル
+0:14:11 HEART STATION / 宇多田ヒカル
+0:22:24 Prisoner Of Love / 宇多田ヒカル
+0:31:19 あなた / 宇多田ヒカル
+0:40:34 fragile / Every Little Thing
+0:50:36 帝国少女 / R Sound Design
+0:58:47 flos / R Sound Design
+1:06:48 翡翠のまち / メル
+1:16:28 心做し / 蝶々P
+1:24:31 アヤノの幸福理論 / じん
+1:35:56 スウィートタイム / Easy Pop
+1:45:26 サイノウサンプラー / koyori(電ポルP)
+1:51:28 小夜子 / みきとP
+1:58:33 夢と葉桜 / 青木月光
+2:05:53 風のとおり道 / 井上あずみ
+2:15:11 Arrietty's Song / セシル・コルベル
+2:20:53 世界の約束 / 倍賞千恵子
+2:30:05 JANE DOE / 米津玄師・宇多田ヒカル
+2:36:23 藍 / スキマスイッチ
 
 video: https://www.youtube.com/watch?v=NzoDtsazY2g
 
 0:06:13 桜流し / 宇多田ヒカル
 0:14:48 Caffeine / 秋山黄色
 0:22:36 デジタルラヴ / WurtS
-0:29:29 「僕は...」 / あらたよ
+0:29:29 「僕は...」 / あたらよ
 0:36:06 祝日天国 / 35.7
 0:43:37 革命道中 / アイナ・ジ・エンド
 0:51:16 琥珀色の街、上海蟹の朝 / くるり
@@ -707,14 +707,14 @@ video: https://www.youtube.com/watch?v=NzoDtsazY2g
 
 video: https://www.youtube.com/watch?v=FiGxpX1_JkM
 
-0:05:38 デジタルラブ / WurtS
+0:05:38 デジタルラブ / WurtS feat. 星街すいせい
 0:10:21 割れたリンゴ / 渡辺早季(種田梨沙)
 0:16:59 39 / sasakure.UK 
 0:26:45 モニタリング / DECO*27
 0:31:52 BURN / yama✕WurtS
 0:36:21 Boom / Team ahamo
 0:42:16 01 / 女王蜂
-0:49:44 キスキツネ / HIMEHINA(ヒメヒナ)
+0:49:44 キスキツネ / ヒメヒナ(HIMEHINA)
 0:56:14 カタオモイ / Aimer
 1:05:02 境界線 / amazarashi
 1:13:28 恋 / 奥華子
@@ -749,7 +749,7 @@ video: https://www.youtube.com/watch?v=CKD8pVD9Z1I
 2:12:17 死んでしまったのだろうか / Guiano
 2:22:08 箱庭 ～ミニチュアガーデン～ / 天野月
 2:30:30 pink monsoon / シェリル・ノーム starring May'n
-2:39:26 ニワカアメ / 天野月
+2:39:26 ニワカアメ / 花たん
 2:53:35 ninelie / Aimer with chelly(EGOIST)
 3:01:47 Call of Silence / 澤野弘之 feat.Gemie
 
@@ -779,7 +779,7 @@ video: https://www.youtube.com/watch?v=KlCUZJRiZsc
 video: https://www.youtube.com/watch?v=og0sG4YPG5Q
 
 0:06:50 Burning Friday Night / Lucky Kilimanjaro
-0:15:17 「 僕は...」 / あたらよ
+0:15:17 「僕は...」 / あたらよ
 0:22:36 10月無口な君を忘れる / あたらよ
 0:30:58 燈 / 崎山蒼志
 0:36:47 独りんぼエンヴィー / koyori(電ポルP)
@@ -794,7 +794,7 @@ video: https://www.youtube.com/watch?v=og0sG4YPG5Q
 1:34:19 PEACH / 大塚愛
 1:40:44 桃ノ花ビラ / 大塚愛
 1:48:58 III / 宝鐘マリン＆こぼ・かなえる
-1:54:28 YUME日和 / 島谷 ひとみ
+1:54:28 YUME日和 / 島谷ひとみ
 2:05:08 Wind / Akeboshi
 2:12:59 らしさ / SUPER BEAVER
 2:20:42 ビビデバ / 星街すいせい 
@@ -841,8 +841,8 @@ video: https://www.youtube.com/watch?v=ASVTwmRFioo
 0:27:50 オレンジ / SPYAIR
 0:36:23 アタシのドレス / ねぐせ。
 0:49:16 DAYBREAK FRONTLINE / Orangestar
-0:54:56 夜もすがら君想う / TOKOTOKO(西沢さんP)
-1:02:25 元気出して / 竹内まりや
+0:54:56 夜もすがら君想ふ / TOKOTOKO(西沢さんP)
+1:02:25 元気を出して / 竹内まりや
 1:10:26 SAKURA / いきものがかり
 1:16:43 ジョイフル / いきものがかり
 1:22:15 TAIDADA / ずっと真夜中でいいのに。
@@ -854,7 +854,7 @@ video: https://www.youtube.com/watch?v=ASVTwmRFioo
 2:11:56 好きな惣菜発表ドラゴン / ンバヂ
 2:18:57 フューチャー・イヴ / sasakure.UK
 2:24:20 残響散歌 / Aimer
-2:30:27 call / ちゃんみな
+2:30:27 Call / ちゃんみな
 2:34:54 Never Grow Up / ちゃんみな
 2:40:26 LADY / ちゃんみな
 2:45:54 B級 / ちゃんみな
@@ -877,7 +877,7 @@ video: https://www.youtube.com/watch?v=KWdornRLslc
 1:14:14 シニカルナイトプラン / Ayase
 1:22:33 不可思議のカルテ / 桜島麻衣(瀬戸麻沙美)・古賀朋絵(東山奈央)・双葉理央(種崎敦美)・豊浜のどか(内田真礼)・梓川かえで＆梓川花楓(久保ユリカ)・牧之原翔子(水瀬いのり)
 1:28:31 いきのこり●ぼくら / 青葉市子
-1:41:34 天使になっちゃった / May'nとシェリル・ノーム
+1:41:34 天使になっちゃった / シェリル・ノーム starring May'n
 1:48:37 YOU & IDOL / 相対性理論
 1:54:14 ミス・パラレルワールド / 相対性理論
 2:02:37 アムリタ / 牧野由依
@@ -966,7 +966,7 @@ video: https://www.youtube.com/watch?v=Dx3AP8_INKk
 2:11:04 つきとさなぎ / ぼくのりりっくのぼうよみ
 2:17:32 六等星の夜 / Aimer
 2:26:08 LAST STARDUST / Aimer
-2:35:28 ninelie / Aimer
+2:35:28 ninelie / Aimer with chelly(EGOIST)
 2:45:19 カントリーロード / 本名陽子
 
 video: https://www.youtube.com/watch?v=_MmP6g1YRGU
@@ -985,7 +985,7 @@ video: https://www.youtube.com/watch?v=_MmP6g1YRGU
 1:19:01 モエチャッカファイア / 弌誠
 1:25:02 太陽曰く燃えよカオス / 後ろから這いより隊G
 1:32:09 嘘 / シド
-1:41:46 不可抗力 / Vaundy
+1:41:46 不可幸力 / Vaundy
 1:47:45 裸の勇者 / Vaundy
 1:54:40 napori / Vaundy
 2:01:48 東京フラッシュ / Vaundy
@@ -1028,7 +1028,7 @@ video: https://www.youtube.com/watch?v=MsfPjOFODKY
 0:43:37 Sing / Goose house
 0:56:30 Dear My Friend −まだ見ぬ未来へ− / ELISA
 1:03:44 カメリア / 天野月子
-1:13:20 箱庭 ～ミニチュアガーデン～ / 天野月子
+1:13:20 箱庭 ～ミニチュアガーデン～ / 天野月
 1:23:39 SPECIALZ / King Gnu
 1:29:37 Spending all my time / Perfume
 1:35:28 01 / 女王蜂
@@ -1050,7 +1050,7 @@ video: https://www.youtube.com/watch?v=IOmKpqLSMRg
 
 0:05:02 水平線 / back number
 0:13:07 永遠のブルー / 羊文学
-0:21:12 10月無口な君を忘れる / あらたよ
+0:21:12 10月無口な君を忘れる / あたらよ
 0:29:29 シンデレラボーイ / Saucy Dog
 0:38:21 asphyxia / Cö shu Nie
 0:44:09 give it back / Cö shu Nie
@@ -1080,7 +1080,7 @@ video: https://www.youtube.com/watch?v=53nkwV6O1qU
 0:10:52 life hack / Vaundy
 0:17:29 オドループ / フレデリック
 0:27:11 モニタリング / DECO*27
-0:32:18 キスキツネ / HIMEHINA(ヒメヒナ)
+0:32:18 キスキツネ / ヒメヒナ(HIMEHINA)
 0:38:56 フレンジャー / 大塚愛
 0:46:52 雨とカプチーノ / ヨルシカ
 0:53:46 ただ君に晴れ / ヨルシカ
@@ -1132,7 +1132,7 @@ video: https://www.youtube.com/watch?v=A5_0-TJcwx8
 0:37:43 ふたりごと / RADWIMPS
 0:44:34 How crazy / YUI
 0:50:09 LOVE & TRUTH / YUI
-0:57:18 I Remember You / YUI
+0:57:18 I remember You / YUI
 1:03:35 HELLO ～Paradise Kiss～ / YUI
 1:11:41 Namidairo / YUI
 1:19:58 Laugh away / YUI
@@ -1189,7 +1189,7 @@ video: https://www.youtube.com/watch?v=DFEn4j7VJT4
 1:16:58 ハレンチ / ちゃんみな
 1:22:39 B級 / ちゃんみな
 1:28:01 こちら、幸福安心委員会です。 / うたたP
-1:36:50 シャンティ / Wotaku
+1:36:50 シャンティ / wotaku
 1:44:40 寄り酔い / 和ぬか
 1:52:27 調和 / KOKIA
 1:58:50 sprinter / Kalafina
@@ -1199,7 +1199,7 @@ video: https://www.youtube.com/watch?v=DFEn4j7VJT4
 video: https://www.youtube.com/watch?v=YALXFLpxAKs
 
 0:07:16 女狐 / ロス
-0:15:49 彗星になれたら / はるまきごはん
+0:15:49 彗星になれたなら / はるまきごはん
 0:24:44 あなた / 宇多田ヒカル
 0:36:04 境界線 / amazarashi
 0:45:04 One Last Kiss / 宇多田ヒカル
@@ -1208,11 +1208,11 @@ video: https://www.youtube.com/watch?v=YALXFLpxAKs
 1:03:24 会いたいわ / iri
 1:09:24 Wondderland / iri
 1:17:01 やさしい両手 / 三谷朋世
-1:24:10 優しく君は微笑んでいた / 三谷朋世
+1:24:10 優しくキミは微笑んでいた / 三谷朋世
 1:32:25 asphyxia / Cö shu Nie
 1:40:04 永遠のブルー / 羊文学
 1:51:15 Hug / 空音
-1:56:53 死んでしまったのだから / Guiano
+1:56:53 死んでしまったのだろうか / Guiano
 2:03:20 秘密～黒の誓い～ / ひとしずくP
 2:11:02 Synchronicity～第二章 光と影の楽園～ / ひとしずく×やま△
 2:18:35 Leia / ゆよゆっぺ
@@ -1242,7 +1242,7 @@ video: https://www.youtube.com/watch?v=ozXJjQZI0fU
 2:13:09 10月無口な君を忘れる / あたらよ
 2:21:27 GLAMOROUS SKY / NANA starring MIKA NAKASHIMA
 2:28:22 黒い涙 / ANNA TSUCHIYA inspi' NANA(BLACK STONES)
-2:36:15 a little pain / OLIVIA
+2:36:15 a little pain / OLIVIA inspi'REIRA
 2:58:31 六等星の夜 / Aimer
 
 video: https://www.youtube.com/watch?v=LeaajTpDv4s
@@ -1310,7 +1310,7 @@ video: https://www.youtube.com/watch?v=mlm2r_cGH30
 2:06:47 アタシのドレス / ねぐせ。
 2:11:54 ルーマー / ポリスピカデリー
 2:17:28 東京 / きのこ帝国
-2:25:20 call / ちゃんみな
+2:25:20 Call / ちゃんみな
 2:30:11 CHOCOLATE / ちゃんみな
 2:35:25 金木犀の夜 / きのこ帝国
 
@@ -1329,7 +1329,7 @@ video: https://www.youtube.com/watch?v=FFIKd-8ke0o
 1:32:27 不可幸力 / Vaundy
 1:41:12 デスペレート / TeddyLoid & Giga feat. LOLUET
 1:47:48 BALALAIKA / 9Lana
-1:55:06 キスキツネ / HIMEHINE(ヒメヒナ)
-2:05:20 LADY CRAZY / HIMEHINE(ヒメヒナ)
+1:55:06 キスキツネ / ヒメヒナ(HIMEHINA)
+2:05:20 LADY CRAZY / ヒメヒナ(HIMEHINA)
 2:14:44 あなた / 宇多田ヒカル
 2:22:23 Call of Silence / 澤野弘之 feat.Gemie
