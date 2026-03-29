@@ -61,7 +61,7 @@ function renderSongs(){
 <td>${s.title}</td>
 <td>${s.artist}</td>
 <td>${s.count}</td>
-<td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶ 最新</button></td>
+<td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
 </tr>`;
   });
 }
@@ -142,14 +142,8 @@ function renderArtists(){
   const map = {};
 
   data.forEach(d=>{
-    if(!map[d.artist]) map[d.artist] = {};
-    const k = key(d);
-
-    if(!map[d.artist][k]){
-      map[d.artist][k] = { title:d.title, count:0 };
-    }
-
-    map[d.artist][k].count++;
+    if(!map[d.artist]) map[d.artist]=new Set();
+    map[d.artist].add(d.title);
   });
 
   let artists = Object.keys(map);
@@ -159,13 +153,10 @@ function renderArtists(){
   if(keyword){
     artists = artists.filter(a =>
       a.toLowerCase().includes(keyword) ||
-      Object.values(map[a]).some(s =>
-        s.title.toLowerCase().includes(keyword)
-      )
+      Array.from(map[a]).some(t => t.toLowerCase().includes(keyword))
     );
   }
 
-  const type=document.getElementById("sortArtistsType").value;
   const order=document.getElementById("sortArtistsOrder").value;
 
   artists.sort((a,b)=>{
@@ -173,37 +164,24 @@ function renderArtists(){
     return order==="desc"?-res:res;
   });
 
-  const container=document.getElementById("artistsContainer");
-  container.innerHTML="";
+  const tbody=document.getElementById("artistsBody");
+  tbody.innerHTML="";
 
   artists.forEach(a=>{
-
-    let songs = Object.values(map[a]);
-
-    songs.sort((x,y)=>{
-      let res=0;
-      if(type==="count") res=x.count-y.count;
-      else res=x.title.localeCompare(y.title);
-      return order==="desc"?-res:res;
-    });
-
-    const block=document.createElement("div");
-    block.className="artist-block";
-
-    block.innerHTML=`
-<div class="artist-name">${a}</div>
-
-<div class="artist-songs">
-${songs.map(s=>`
-<div class="artist-song">
-<span class="artist-song-title">${s.title}</span>
-<span class="artist-song-count">${s.count}回</span>
-</div>
-`).join("")}
-</div>
+    tbody.innerHTML+=`
+<tr class="artist-header">
+<td colspan="2">${a}</td>
+</tr>
 `;
 
-    container.appendChild(block);
+    Array.from(map[a]).sort().forEach(t=>{
+      tbody.innerHTML+=`
+<tr class="artist-song-row">
+<td></td>
+<td>${t}</td>
+</tr>
+`;
+    });
   });
 }
 
@@ -239,5 +217,4 @@ document.getElementById("sortSongsOrder").addEventListener("change",renderSongs)
 document.getElementById("searchStreams").addEventListener("input",renderStreams);
 
 document.getElementById("searchArtists").addEventListener("input",renderArtists);
-document.getElementById("sortArtistsType").addEventListener("change",renderArtists);
 document.getElementById("sortArtistsOrder").addEventListener("change",renderArtists);

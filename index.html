@@ -52,18 +52,15 @@
 <div id="artists" class="hidden section">
   <div class="toolbar">
     <input id="searchArtists" placeholder="曲・アーティスト検索">
-    <select id="sortArtistsType">
-      <option value="artist">アーティスト</option>
-      <option value="title">曲名</option>
-      <option value="count">回数</option>
-    </select>
     <select id="sortArtistsOrder">
       <option value="asc">昇順</option>
       <option value="desc">降順</option>
     </select>
   </div>
 
-  <div id="artistsContainer"></div>
+  <table>
+    <tbody id="artistsBody"></tbody>
+  </table>
 </div>
 
 <div id="modal" class="hidden">
