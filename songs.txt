@@ -119,7 +119,7 @@ video: https://www.youtube.com/watch?v=hbMe1nuWy_Y
 0:22:52 新宝島 / サカナクション
 0:31:04 DAYBREAK FRONTLINE / Orangestar 
 0:37:17 未来 / コブクロ
-0:44:46 ミチシルベ / ORANGE RANGE
+0:44:46 ミチシルベ～a road home～ / ORANGE RANGE
 0:54:28 花に亡霊 / ヨルシカ
 1:03:19 言って。 / ヨルシカ
 1:14:40 Long Kiss Good Bye / HALCALI
@@ -352,7 +352,7 @@ video: https://www.youtube.com/watch?v=tRDd_8q33YM
 1:08:03 真夜中のドア～Stay With Me / 松原みき
 1:15:39 ルンがピカッと光ったら / ワルキューレ
 1:23:14 魂のルフラン / 高橋洋子
-1:38:09 調和oto～with reflection～ / KOKIA
+1:38:09 調和 oto～with reflection～ / KOKIA
 1:45:18 ワダツミの木 / 元ちとせ
 1:53:14 愛 / 大塚愛
 2:03:06 Arrietty's Song / セシル・コルベル
@@ -511,7 +511,7 @@ video: https://www.youtube.com/watch?v=KAT0zGOLXaM
 0:55:10 キミに贈る歌 / 菅原紗由理
 1:03:51 フェイク / Mr.Children
 1:15:05 カメリア / 天野月子
-1:26:51 ココロオドル / Nobodyknows+
+1:26:51 ココロオドル / nobodyknows+
 1:37:44 One / RIP SLYME
 1:44:36 熱帯夜 / RIP SLYME
 1:54:25 睡蓮花 / 湘南乃風
@@ -939,7 +939,7 @@ video: https://www.youtube.com/watch?v=vFHo1I_xrsw
 1:58:08 ポケッターリ モンスターリ / 太田衣美
 2:04:27 アドバンス・アドベンチャー / GARDEN
 2:13:47 クムリウタ / 大塚愛
-2:23:36 fake face dance music / 音田 雅則
+2:23:36 fake face dance music / 音田雅則
 2:28:34 ハレンチ / ちゃんみな
 2:34:53 水流のロック / 日食なつこ
 2:41:06 asphyxia / Cö shu Nie
@@ -949,7 +949,7 @@ video: https://www.youtube.com/watch?v=Dx3AP8_INKk
 
 0:05:32 歌舞伎町の女王 / 椎名林檎
 0:10:01 本能 / 椎名林檎
-0:16:47 長く短い祭り / 椎名林檎
+0:16:47 長く短い祭 / 椎名林檎
 0:25:25 ギブス / 椎名林檎 
 0:42:46 プロポーズ / 内緒のピアス
 0:49:28 女狐 / ロス
@@ -966,7 +966,7 @@ video: https://www.youtube.com/watch?v=Dx3AP8_INKk
 2:17:32 六等星の夜 / Aimer
 2:26:08 LAST STARDUST / Aimer
 2:35:28 ninelie / Aimer with chelly(EGOIST)
-2:45:19 カントリーロード / 本名陽子
+2:45:19 カントリー・ロード / 本名陽子
 
 video: https://www.youtube.com/watch?v=_MmP6g1YRGU
 
@@ -1011,7 +1011,7 @@ video: https://www.youtube.com/watch?v=2Pl5ISaq1R8
 1:25:35 My Soul,Your Beats! / Lia
 1:37:34 恋 / 奥華子
 1:45:41 約束をしよう / supercell
-1:56:19 ずるい幻 / めいちゃん
+1:56:19 ズルい幻 / めいちゃん
 2:06:45 運命の人 / 藤田麻衣子
 2:16:31 Perfect Day / supercell
 2:27:07 Feel so good / supercell
@@ -1095,7 +1095,7 @@ video: https://www.youtube.com/watch?v=53nkwV6O1qU
 2:13:30 SAD SONG / ちゃんみな
 2:22:17 Wind / Akeboshi
 2:31:29 フクロウ ～フクロウが知らせる客が来たと～ / KOKIA
-2:40:41 調和 / KOKIA
+2:40:41 調和 oto～with reflection～ / KOKIA
 2:47:57 ワダツミの木 / 元ちとせ
 2:56:46 Call of Silence / 澤野弘之 feat.Gemie
 
@@ -1131,7 +1131,7 @@ video: https://www.youtube.com/watch?v=A5_0-TJcwx8
 0:37:43 ふたりごと / RADWIMPS
 0:44:34 How crazy / YUI
 0:50:09 LOVE & TRUTH / YUI
-0:57:18 I remember You / YUI
+0:57:18 I remember you / YUI
 1:03:35 HELLO ～Paradise Kiss～ / YUI
 1:11:41 Namidairo / YUI
 1:19:58 Laugh away / YUI
@@ -1184,13 +1184,13 @@ video: https://www.youtube.com/watch?v=DFEn4j7VJT4
 0:51:34 life hack / Vaundy
 0:57:53 燈 / 崎山蒼志
 1:04:08 オドループ / フレデリック
-1:10:50 夜もすがら君を想ふ / TOKOTOKO(西沢さんP)
+1:10:50 夜もすがら君想ふ / TOKOTOKO(西沢さんP)
 1:16:58 ハレンチ / ちゃんみな
 1:22:39 B級 / ちゃんみな
 1:28:01 こちら、幸福安心委員会です。 / うたたP
 1:36:50 シャンティ / wotaku
 1:44:40 寄り酔い / 和ぬか
-1:52:27 調和 / KOKIA
+1:52:27 調和 oto～with reflection～ / KOKIA
 1:58:50 sprinter / Kalafina
 2:08:18 Magia / Kalafina
 2:16:16 oblivious / Kalafina
@@ -1205,7 +1205,7 @@ video: https://www.youtube.com/watch?v=YALXFLpxAKs
 0:51:58 IRIS OUT / 米津玄師
 0:56:08 Feel so good / supercell
 1:03:24 会いたいわ / iri
-1:09:24 Wondderland / iri
+1:09:24 Wonderland / iri
 1:17:01 やさしい両手 / 三谷朋世
 1:24:10 優しくキミは微笑んでいた / 三谷朋世
 1:32:25 asphyxia / Cö shu Nie
@@ -1254,13 +1254,13 @@ video: https://www.youtube.com/watch?v=LeaajTpDv4s
 0:47:16 火炎 / 女王蜂
 0:53:13 祝日天国 / 35.7
 1:02:05 憂、燦々 / クリープハイプ
-1:08:39 楔 / 奥華子
+1:08:39 楔-くさび- / 奥華子
 1:15:55 六等星の夜 / Aimer
 1:27:47 10月無口な君を忘れる / あたらよ
 1:35:11 名前のない怪物 / EGOIST
 1:43:10 All Alone With You / EGOIST
 1:51:18 ninelie / Aimer with chelly(EGOIST)
-1:58:53 調和 / KOKIA
+1:58:53 調和 oto～with reflection～ / KOKIA
 2:05:36 夏の林檎 / Kalafina
 2:12:51 おやすみ泣き声、さよなら歌姫 / クリープハイプ
 2:44:52 Arrietty's Song / セシル・コルベル
@@ -1294,7 +1294,7 @@ video: https://www.youtube.com/watch?v=HLH8Grfzm6k
 video: https://www.youtube.com/watch?v=mlm2r_cGH30
 
 0:05:38 祝日天国 / 35.7
-0:12:45 彗星になれたら / はるまきごはん
+0:12:45 彗星になれたなら / はるまきごはん
 0:19:46 浴槽とネオンテトラ / REISAI
 0:27:47 Bling-Bang-Bang-Born / Creepy Nuts
 0:33:30 ロマンスの神様 / 広瀬香美
@@ -1326,7 +1326,7 @@ video: https://www.youtube.com/watch?v=FFIKd-8ke0o
 1:10:30 One more time one more chance / 山崎まさよし
 1:20:34 未来 / コブクロ
 1:32:27 不可幸力 / Vaundy
-1:41:12 デスペレート / TeddyLoid & Giga feat. LOLUET
+1:41:12 デスペレート / TeddyLoid&Giga feat.LOLUET
 1:47:48 BALALAIKA / 9Lana
 1:55:06 キスキツネ / ヒメヒナ(HIMEHINA)
 2:05:20 LADY CRAZY / ヒメヒナ(HIMEHINA)
@@ -1355,7 +1355,7 @@ video: https://www.youtube.com/watch?v=r1PlDVNZqLQ
 1:50:55 晩餐歌 / tuki.
 1:58:34 RPG / School Food Punishment
 2:04:48 ワダツミの木 / 元ちとせ
-2:13:11 unlasuting / LiSA
+2:13:11 unlasting / LiSA
 2:22:25 Brave Shine / Aimer
 2:30:22 Avid / SawanoHiroyuki[nZk]:mizuki
 2:39:11 melt bitter / さとうもか
@@ -1366,7 +1366,7 @@ video: https://www.youtube.com/watch?v=r1PlDVNZqLQ
 video: https://www.youtube.com/watch?v=oSXnYO_qMvM
 
 0:07:28 メリクリ / BoA
-0:17:08 恋人はサンタクロース / 松任谷由実
+0:17:08 恋人がサンタクロース / 松任谷由実
 0:26:08 クリスマス・イブ / 山下達郎
 0:32:49 Snow halation / μ's
 0:42:47 クリスマスキャロルの頃には / 稲垣潤一
@@ -1380,8 +1380,8 @@ video: https://www.youtube.com/watch?v=oSXnYO_qMvM
 2:04:40 未来へ / Kiroro
 2:21:02 JANE DOE / 米津玄師・宇多田ヒカル
 2:27:18 あなた / 宇多田ヒカル
-2:36:44 琥珀色の街、上海蟹の街 / くるり
-2:45:59 CRY / mizuki
+2:36:44 琥珀色の街、上海蟹の朝 / くるり
+2:45:59 CRY / SawanoHiroyuki[nZk]:mizuki
 2:55:10 水平線 / back number
 
 video: https://www.youtube.com/watch?v=teK2HbqMpqE
@@ -1476,7 +1476,7 @@ video: https://www.youtube.com/watch?v=j_NHkN9hyWE
 video: https://www.youtube.com/watch?v=w_cqBNeWI0c
 
 0:04:58 燈 / 崎山蒼志
-0:14:20 Kiss Hug / aiko
+0:14:20 KissHug / aiko
 0:24:51 花火 / aiko
 0:33:11 有心論 / RADWIMPS
 0:40:46 革命道中 / アイナ・ジ・エンド
@@ -1500,7 +1500,7 @@ video: https://www.youtube.com/watch?v=w_cqBNeWI0c
 video: https://www.youtube.com/watch?v=7_FM94Kq0X8
 
 0:05:23 スノースマイル / BUMP OF CHICKEN
-0:14:14 Shout baby / 緑黄色社会
+0:14:14 Shout Baby / 緑黄色社会
 0:24:44 季節は次々死んでいく / amazarashi
 0:34:15 強火 / 女王蜂
 0:41:09 asphyxia / Cö shu Nie
@@ -1531,7 +1531,7 @@ via: https://www.youtube.com/watch?v=iCqXGCppXag
 0:22:07 Voyage / 浜崎あゆみ
 0:30:55 モザイクカケラ / SunSet Swish
 0:39:18 トウキョウ・シャンディ・ランデヴ / MAISONdes
-0:44:50 不可抗力 / Vaundy
+0:44:50 不可幸力 / Vaundy
 0:50:55 again / YUI
 1:02:46 ガラナ / スキマスイッチ
 1:11:05 PIECES OF A DREAM / ケミストリー
@@ -1555,14 +1555,14 @@ video: https://www.youtube.com/watch?v=v0Cyw8XtmdI
 0:20:00 オレンジ / SPYAIR
 0:30:52 美しい鰭 / スピッツ
 0:37:46 ロビンソン / スピッツ
-0:44:46 TAIDADA / ずっと真夜中でいいのに
+0:44:46 TAIDADA / ずっと真夜中でいいのに。
 0:59:07 ドラマチック / YUKI
 1:10:09 織姫とBABY / ねぐせ。
 1:18:03 ムーンライト / 星街すいせい
 1:29:54 雨とカプチーノ / ヨルシカ
 1:39:42 盗作 / ヨルシカ
 1:50:11 言って。 / ヨルシカ
-1:59:04 だから僕は音楽は辞めた / ヨルシカ
+1:59:04 だから僕は音楽を辞めた / ヨルシカ
 2:10:26 JANE DOE / 米津玄師・宇多田ヒカル
 2:21:17 風を食む / ヨルシカ
 2:29:10 アポリア / ヨルシカ
@@ -1581,7 +1581,7 @@ video: https://www.youtube.com/watch?v=qj5AZmr66p4
 0:53:31 琥珀色の街、上海蟹の朝 / くるり
 1:03:33 百花繚乱 / 幾田りら
 1:10:35 夜行 / ヨルシカ
-1:19:13 unrasting / LiSA
+1:19:13 unlasting / LiSA
 1:27:25 世界の約束 / 倍賞千恵子
 1:36:53 風の通り道 / 久石譲
 1:48:22 Swallowtail Butterfly ～あいのうた～ / YEN TOWN BAND
@@ -1605,7 +1605,7 @@ video: https://www.youtube.com/watch?v=R3udjTUdgAQ
 1:03:33 鬼ノ宴 / 友成空
 1:09:08 長く短い祭 / 椎名林檎
 1:16:07 デスぺレート / TeddyLoid&Giga feat.LOLUET
-1:28:28 JOI / YUKI
+1:28:28 JOY / YUKI
 1:36:05 魔性の女A / 紫今
 1:42:03 ウワサのあの子 / 紫今
 1:47:53 1000日間 / 乃紫
@@ -1614,7 +1614,7 @@ video: https://www.youtube.com/watch?v=R3udjTUdgAQ
 2:09:26 10月無口な君を忘れる / あたらよ
 2:18:05 愛♡スクリ～ム / AiScReam
 2:29:41 白金ディスコ / 阿良々木月火(井口裕香)
-2:42:51 星座に寝れたら / 結束バンド
+2:42:51 星座になれたら / 結束バンド
 2:50:41 Arrietty's Song / セシル・コルベル
 2:56:22 JANE DOE / 米津玄師・宇多田ヒカル
 
@@ -1627,7 +1627,7 @@ video: https://www.youtube.com/watch?v=O1JRbGqxbMI
 0:35:53 ソラニン / ASIAN KUNG-FU GENERATION
 0:43:29 愛包ダンスホール / ヒメヒナ(HIMEHINA)
 0:49:09 キスキツネ / ヒメヒナ(HIMEHINA)
-0:56:06 LADYCRAZY / ヒメヒナ(HIMEHINA)
+0:56:06 LADY CRAZY / ヒメヒナ(HIMEHINA)
 1:05:49 IRIS OUT / 米津玄師 
 1:10:47 ALONES / Aqua Timez
 1:24:17 ずうっといっしょ！ / キタニタツヤ
@@ -1648,7 +1648,7 @@ video: https://www.youtube.com/watch?v=u_oC9oHeMok
 0:25:42 Call of Silence / 澤野弘之 feat.Gemie
 0:34:30 季節は次々死んでいく / amazarashi
 0:42:20 罪人 / supercell
-0:52:28 ビートロ模様 / やなぎなぎ
+0:52:28 ビードロ模様 / やなぎなぎ
 1:03:20 青のすみか / キタニタツヤ
 1:08:35 人間みたいね / キタニタツヤ
 1:15:06 エイプリル / mol-74
@@ -1700,7 +1700,7 @@ video: https://www.youtube.com/watch?v=XCKn8Rt6KuA
 1:07:06 YUME日和 / 島谷ひとみ
 1:14:15 フェイク / Mr.Children
 1:26:26 完全感覚Dreamer / ONE OK ROCK
-1:37:55 食中植物 / 理芽
+1:37:55 食虫植物 / 理芽
 1:44:59 睡蓮花 / 湘南乃風
 2:01:00 群青 / YOASOBI
 2:11:12 ミックスナッツ / Official髭男dism
@@ -1746,13 +1746,13 @@ video: https://www.youtube.com/watch?v=40C35J_9EuI
 0:57:59 B級 / ちゃんみな
 1:03:49 ハレンチ / ちゃんみな
 1:09:04 本能 / 椎名林檎
-1:17:02 IRISOUT / 米津玄師
+1:17:02 IRIS OUT / 米津玄師
 1:23:44 JANE DOE / 米津玄師・宇多田ヒカル
 1:30:36 織姫とBABY / ねぐせ。
 1:40:58 恋風 / 幾田りら
 1:59:23 ブルーバード / いきものがかり
 2:08:15 ハルモニア / RYTHEM
-2:15:27 10月無口な君忘れる / あたらよ
+2:15:27 10月無口な君を忘れる / あたらよ
 2:24:17 366日 / HY
 2:33:18 SAKURA / いきものがかり
 2:42:23 ボクノート / スキマスイッチ
