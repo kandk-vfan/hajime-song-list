@@ -1,6 +1,6 @@
 let data = [];
 
-const STORAGE_KEY = "tableTheme";
+const STORAGE_KEY = "theme";
 
 function normalize(str){
   return str.replace(/^[\s　]+|[\s　]+$/g, "");
@@ -14,54 +14,41 @@ function debounce(fn, delay=200){
   };
 }
 
-function getTheme(){
-  const saved = localStorage.getItem(STORAGE_KEY);
-  if(saved) return saved;
+function setTheme(mode){
+  localStorage.setItem(STORAGE_KEY, mode);
+  applyTheme();
+}
 
-  if(window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches){
-    return "dark";
-  }
-  return "light";
+function getTheme(){
+  return localStorage.getItem(STORAGE_KEY) || "dark";
 }
 
 function applyTheme(){
-  const theme = getTheme();
-  const isLight = theme === "light";
-
+  const isLight = getTheme()==="light";
   document.getElementById("songsTable").classList.toggle("light", isLight);
   document.getElementById("artistsTable").classList.toggle("light", isLight);
   document.body.classList.toggle("streams-light", isLight);
+  document.getElementById("themeToggle").checked = isLight;
 }
 
-function toggleTheme(){
-  const next = getTheme() === "dark" ? "light" : "dark";
-  localStorage.setItem(STORAGE_KEY, next);
-  applyTheme();
-  updateButtons();
-}
-
-function updateButtons(){
-  const isLight = getTheme() === "light";
-  document.getElementById("themeToggleSongs").checked = isLight;
-  document.getElementById("themeToggleStreams").checked = isLight;
-  document.getElementById("themeToggleArtists").checked = isLight;
-}
+document.getElementById("themeToggle")?.addEventListener("change",(e)=>{
+  setTheme(e.target.checked ? "light" : "dark");
+});
 
 fetch("data.json")
-  .then(r=>r.json())
-  .then(j=>{
-    data = j.map(d => ({
-      ...d,
-      title: normalize(d.title),
-      artist: normalize(d.artist)
-    }));
-    renderAll();
-    applyTheme();
-    updateButtons();
-  });
+.then(r=>r.json())
+.then(j=>{
+  data=j.map(d=>({
+    ...d,
+    title:normalize(d.title),
+    artist:normalize(d.artist)
+  }));
+  renderAll();
+  applyTheme();
+});
 
 function key(d){
-  return d.title + "||" + d.artist;
+  return d.title+"||"+d.artist;
 }
 
 function renderAll(){
@@ -72,80 +59,172 @@ function renderAll(){
 }
 
 function renderSummary(){
-  const songSet=new Set();
-  const artistSet=new Set();
-
+  const s=new Set();
+  const a=new Set();
   data.forEach(d=>{
-    songSet.add(key(d));
-    artistSet.add(d.artist);
+    s.add(key(d));
+    a.add(d.artist);
+  });
+  const text=`曲数：${s.size} / アーティスト数：${a.size}`;
+  songsSummary.innerText=text;
+  streamsSummary.innerText=text;
+  artistsSummary.innerText=text;
+}
+
+function renderSongs(){
+  const map={};
+  data.forEach(d=>{
+    const k=key(d);
+    if(!map[k]) map[k]={...d,count:0};
+    map[k].count++;
   });
 
-  const text=`曲数：${songSet.size} / アーティスト数：${artistSet.size}`;
+  let arr=Object.values(map);
 
-  document.getElementById("songsSummary").innerText=text;
-  document.getElementById("streamsSummary").innerText=text;
-  document.getElementById("artistsSummary").innerText=text;
+  const kw=searchSongs.value.toLowerCase();
+  if(kw){
+    arr=arr.filter(s=>s.title.toLowerCase().includes(kw)||s.artist.toLowerCase().includes(kw));
+  }
+
+  const type=sortSongsType.value;
+  const order=sortSongsOrder.value;
+
+  arr.sort((a,b)=>{
+    let r=0;
+    if(type==="count") r=a.count-b.count;
+    else if(type==="artist") r=a.artist.localeCompare(b.artist);
+    else r=a.title.localeCompare(b.title);
+    return order==="desc"?-r:r;
+  });
+
+  songsBody.innerHTML = arr.length===0
+    ? `<tr><td colspan="4">該当する結果がありません</td></tr>`
+    : arr.map(s=>`
+<tr>
+<td>${s.title}</td>
+<td>${s.artist}</td>
+<td>${s.count}</td>
+<td><button onclick="play('${s.videoId}','${s.time}')">▶</button></td>
+</tr>`).join("");
+}
+
+function renderStreams(){
+  const map={};
+
+  data.forEach(d=>{
+    if(!map[d.videoId]){
+      map[d.videoId]={title:d.videoTitle,date:d.date,songs:[]};
+    }
+    map[d.videoId].songs.push(d);
+  });
+
+  let arr=Object.entries(map);
+
+  const order=sortStreamsOrder.value;
+
+  arr.sort((a,b)=>{
+    const aDate=Math.max(...a[1].songs.map(s=>new Date(s.date)));
+    const bDate=Math.max(...b[1].songs.map(s=>new Date(s.date)));
+    return order==="desc"?bDate-aDate:aDate-bDate;
+  });
+
+  const kw=searchStreams.value.toLowerCase();
+
+  streamsContainer.innerHTML="";
+
+  let hit=0;
+
+  arr.forEach(([vid,v])=>{
+    const list=v.songs.filter(s=>!kw||s.title.toLowerCase().includes(kw)||s.artist.toLowerCase().includes(kw));
+    if(list.length===0) return;
+
+    hit++;
+
+    streamsContainer.innerHTML+=`
+<div class="card">
+<div class="stream-title-row">
+<a href="https://youtube.com/watch?v=${vid}" target="_blank">${v.title}</a>
+</div>
+<div class="stream-date">${v.date}</div>
+<div class="grid">
+${list.map((s,i)=>`
+<div class="song-card ${kw&&(s.title.toLowerCase().includes(kw)||s.artist.toLowerCase().includes(kw))?"highlight":""}">
+<div>${i+1}</div>
+<div>${s.title}</div>
+<div>${s.artist}</div>
+</div>`).join("")}
+</div>
+</div>`;
+  });
+
+  if(hit===0){
+    streamsContainer.innerHTML="<p>該当する結果がありません</p>";
+  }
 }
 
 function renderArtists(){
   const map={};
-
   data.forEach(d=>{
     if(!map[d.artist]) map[d.artist]=new Set();
     map[d.artist].add(d.title);
   });
 
-  let arr = Object.entries(map).map(([artist, set]) => ({
+  let arr=Object.entries(map).map(([artist,set])=>({
     artist,
-    songs: Array.from(set),
-    count: set.size
+    songs:[...set],
+    count:set.size
   }));
 
-  const keyword=document.getElementById("searchArtists").value.toLowerCase();
+  const kw=searchArtists.value.toLowerCase();
 
-  if(keyword){
-    arr = arr.filter(a =>
-      a.artist.toLowerCase().includes(keyword) ||
-      a.songs.some(t => t.toLowerCase().includes(keyword))
-    );
+  if(kw){
+    arr=arr.filter(a=>a.artist.toLowerCase().includes(kw)||a.songs.some(t=>t.toLowerCase().includes(kw)));
   }
 
-  if(arr.length===0){
-    document.getElementById("artistsBody").innerHTML=`<tr><td colspan="2">該当する結果がありません</td></tr>`;
-    return;
-  }
-
-  const type=document.getElementById("sortArtistsType").value;
-  const order=document.getElementById("sortArtistsOrder").value;
+  const type=sortArtistsType.value;
+  const order=sortArtistsOrder.value;
 
   arr.sort((a,b)=>{
-    let res=0;
-    if(type==="count") res=a.count-b.count;
-    else res=a.artist.localeCompare(b.artist);
-    return order==="desc"?-res:res;
+    let r= type==="count"?a.count-b.count:a.artist.localeCompare(b.artist);
+    return order==="desc"?-r:r;
   });
 
-  const tbody=document.getElementById("artistsBody");
-  tbody.innerHTML="";
-
-  arr.forEach(a=>{
-    tbody.innerHTML+=`
-<tr class="artist-header">
-<td colspan="2">${a.artist}（${a.count}曲）</td>
-</tr>
-`;
-
-    a.songs.sort().forEach(t=>{
-      tbody.innerHTML+=`
-<tr class="artist-song-row">
-<td></td>
-<td>${t}</td>
-</tr>
-`;
-    });
-  });
+  artistsBody.innerHTML = arr.length===0
+    ? `<tr><td colspan="2">該当する結果がありません</td></tr>`
+    : arr.map(a=>`
+<tr class="artist-header"><td colspan="2">${a.artist}（${a.count}曲）</td></tr>
+${a.songs.map(t=>`<tr><td></td><td>${t}</td></tr>`).join("")}
+`).join("");
 }
 
-document.getElementById("searchArtists").addEventListener("input", debounce(renderArtists));
-document.getElementById("sortArtistsOrder").addEventListener("change", renderArtists);
-document.getElementById("sortArtistsType").addEventListener("change", renderArtists);
+function showTab(id,btn){
+  document.querySelectorAll(".section").forEach(e=>e.classList.add("hidden"));
+  document.getElementById(id).classList.remove("hidden");
+  document.querySelectorAll(".tab-button").forEach(b=>b.classList.remove("active"));
+  btn.classList.add("active");
+}
+
+function play(v,t){
+  const sec=t.split(":").reduce((a,b)=>a*60+Number(b));
+  player.innerHTML=`<iframe src="https://www.youtube.com/embed/${v}?start=${sec}&autoplay=1"></iframe>`;
+  modal.classList.remove("hidden");
+}
+
+function closeModal(){
+  player.innerHTML="";
+  modal.classList.add("hidden");
+}
+
+searchSongs.addEventListener("input",debounce(renderSongs));
+searchStreams.addEventListener("input",debounce(renderStreams));
+searchArtists.addEventListener("input",debounce(renderArtists));
+
+sortSongsOrder.addEventListener("change",renderSongs);
+sortStreamsOrder.addEventListener("change",renderStreams);
+sortArtistsOrder.addEventListener("change",renderArtists);
+sortArtistsType.addEventListener("change",renderArtists);
+
+sortSongsType.addEventListener("change",()=>{
+  if(sortSongsType.value==="count") sortSongsOrder.value="desc";
+  renderSongs();
+});
