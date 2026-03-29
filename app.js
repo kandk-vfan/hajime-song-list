@@ -2,7 +2,10 @@ let data = [];
 
 const STORAGE_KEY = "tableTheme";
 
-/* デバウンス */
+function normalize(str){
+  return str.replace(/^[\s　]+|[\s　]+$/g, "");
+}
+
 function debounce(fn, delay=200){
   let timer;
   return (...args)=>{
@@ -47,7 +50,11 @@ function updateButtons(){
 fetch("data.json")
   .then(r=>r.json())
   .then(j=>{
-    data=j;
+    data = j.map(d => ({
+      ...d,
+      title: normalize(d.title),
+      artist: normalize(d.artist)
+    }));
     renderAll();
     applyTheme();
     updateButtons();
@@ -79,8 +86,6 @@ function renderSummary(){
   document.getElementById("streamsSummary").innerText=text;
   document.getElementById("artistsSummary").innerText=text;
 }
-
-/* --- 曲一覧 --- */
 
 function renderSongs(){
   const map={};
@@ -130,8 +135,6 @@ function renderSongs(){
 </tr>`;
   });
 }
-
-/* --- 配信一覧 --- */
 
 function renderStreams(){
   const map={};
@@ -204,8 +207,6 @@ ${filtered.map((s,i)=>`
   }
 }
 
-/* --- アーティスト --- */
-
 function renderArtists(){
   const map={};
 
@@ -245,8 +246,6 @@ function renderArtists(){
   });
 }
 
-/* --- 共通 --- */
-
 function showTab(id,btn){
   document.querySelectorAll(".section").forEach(el=>el.classList.add("hidden"));
   document.getElementById(id).classList.remove("hidden");
@@ -270,8 +269,6 @@ function formatDate(d){
   const date=new Date(d);
   return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")}`;
 }
-
-/* イベント（デバウンス適用） */
 
 document.getElementById("searchSongs").addEventListener("input", debounce(renderSongs));
 document.getElementById("searchStreams").addEventListener("input", debounce(renderStreams));
