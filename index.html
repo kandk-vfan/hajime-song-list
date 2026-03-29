@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>🦊💙🎵 hajime Songs</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<h1>🦊💙🎵 hajime Song List</h1>
+
+<input id="search" placeholder="検索">
+
+<table id="table">
+  <thead>
+    <tr>
+      <th>曲名</th>
+      <th>アーティスト</th>
+      <th>回数</th>
+      <th>最新配信</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<div id="modal" class="hidden">
+  <div id="player"></div>
+  <button onclick="closeModal()">閉じる</button>
+</div>
+
+<script src="app.js"></script>
+</body>
+</html>
