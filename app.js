@@ -7,43 +7,45 @@ fetch("data.json")
     renderAll();
   });
 
-//
-// 共通キー（最重要）
-//
-function key(d) {
+function key(d){
   return d.title + "||" + d.artist;
+}
+
+function renderAll(){
+  renderSongs();
+  renderStreams();
+  renderArtists();
 }
 
 //
 // 曲一覧
 //
-function renderSongs() {
+function renderSongs(){
   const map = {};
 
-  data.forEach(d => {
+  data.forEach(d=>{
     const k = key(d);
 
-    if (!map[k]) {
-      map[k] = {
-        title: d.title,
-        artist: d.artist,
-        count: 0,
-        latest: d,
+    if(!map[k]){
+      map[k]={
+        title:d.title,
+        artist:d.artist,
+        count:0,
+        latest:d
       };
     }
 
     map[k].count++;
 
-    if (new Date(d.date) > new Date(map[k].latest.date)) {
+    if(new Date(d.date) > new Date(map[k].latest.date)){
       map[k].latest = d;
     }
   });
 
   let arr = Object.values(map);
 
-  const keyword = document.getElementById("search").value.toLowerCase();
-
-  if (keyword) {
+  const keyword = document.getElementById("searchSongs").value.toLowerCase();
+  if(keyword){
     arr = arr.filter(s =>
       s.title.toLowerCase().includes(keyword) ||
       s.artist.toLowerCase().includes(keyword)
@@ -53,31 +55,33 @@ function renderSongs() {
   const sort = document.getElementById("sortSongs").value;
 
   arr.sort((a,b)=>{
-    switch(sort){
-      case "count": return b.count - a.count;
-      case "artist": return a.artist.localeCompare(b.artist);
-      default: return a.title.localeCompare(b.title);
-    }
+    if(sort==="artist") return a.artist.localeCompare(b.artist);
+    if(sort==="count") return b.count - a.count;
+    return a.title.localeCompare(b.title);
   });
 
   const tbody = document.getElementById("songsBody");
-  tbody.innerHTML = "";
+  tbody.innerHTML="";
 
   arr.forEach(s=>{
-    tbody.innerHTML += `
+    tbody.innerHTML+=`
 <tr>
 <td>${s.title}</td>
 <td>${s.artist}</td>
 <td>${s.count}</td>
-<td><button onclick="play('${s.latest.videoId}','${s.latest.time}')">▶</button></td>
+<td>
+<button onclick="play('${s.latest.videoId}','${s.latest.time}')">
+▶ 最新
+</button>
+</td>
 </tr>`;
   });
 }
 
 //
-// 配信一覧（カード + 連番 + 日付）
+// 配信一覧（カード）
 //
-function renderStreams() {
+function renderStreams(){
   const map = {};
 
   data.forEach(d=>{
@@ -95,34 +99,46 @@ function renderStreams() {
 
   arr.sort((a,b)=> new Date(b[1].date) - new Date(a[1].date));
 
+  const keyword = document.getElementById("searchStreams").value.toLowerCase();
+
   const container = document.getElementById("streamsContainer");
   container.innerHTML="";
 
-  arr.forEach(([vid,v],i)=>{
-    const card = document.createElement("div");
-    card.className="card";
+  arr.forEach(([vid,v])=>{
 
-    card.innerHTML=`
+    const songs = v.songs.filter(s =>
+      !keyword ||
+      s.title.toLowerCase().includes(keyword) ||
+      s.artist.toLowerCase().includes(keyword)
+    );
+
+    if(songs.length === 0) return;
+
+    const div = document.createElement("div");
+    div.className="card";
+
+    div.innerHTML=`
 <a href="https://youtube.com/watch?v=${vid}" target="_blank">${v.title}</a>
-<div class="date">${new Date(v.date).toLocaleString()}</div>
+<div class="date">${formatDate(v.date)}</div>
+
 <div class="grid">
-${v.songs.map((s,i)=>`
-<div class="song">
+${songs.map((s,i)=>`
+<div class="song" onclick="play('${vid}','${s.time}')">
 <span class="num">${String(i+1).padStart(2,"0")}</span>
-<span>${s.title}</span>
+<span>${s.title} / ${s.artist}</span>
 </div>
 `).join("")}
 </div>
 `;
 
-    container.appendChild(card);
+    container.appendChild(div);
   });
 }
 
 //
-// アーティスト（ソート対応）
+// アーティスト
 //
-function renderArtists() {
+function renderArtists(){
   const map = {};
 
   data.forEach(d=>{
@@ -140,18 +156,21 @@ function renderArtists() {
   let artists = Object.keys(map);
 
   const sort = document.getElementById("sortArtists").value;
+  artists.sort((a,b)=> sort==="desc" ? b.localeCompare(a) : a.localeCompare(b));
 
-  if(sort==="desc"){
-    artists.sort((a,b)=>b.localeCompare(a));
-  }else{
-    artists.sort((a,b)=>a.localeCompare(b));
-  }
+  const keyword = document.getElementById("searchArtists").value.toLowerCase();
 
   const tbody = document.getElementById("artistsBody");
   tbody.innerHTML="";
 
   artists.forEach(a=>{
     Object.values(map[a]).forEach(s=>{
+
+      if(keyword && !(
+        s.title.toLowerCase().includes(keyword) ||
+        a.toLowerCase().includes(keyword)
+      )) return;
+
       tbody.innerHTML+=`
 <tr>
 <td>${a}</td>
@@ -165,24 +184,6 @@ function renderArtists() {
 //
 // UI
 //
-function renderAll(){
-  initSort();
-  renderSongs();
-  renderStreams();
-  renderArtists();
-}
-
-function initSort(){
-  document.getElementById("sortSongs").innerHTML=`
-<option value="title">曲名</option>
-<option value="artist">アーティスト</option>
-<option value="count">回数</option>`;
-
-  document.getElementById("sortArtists").innerHTML=`
-<option value="asc">昇順</option>
-<option value="desc">降順</option>`;
-}
-
 function showTab(id){
   ["songs","streams","artists"].forEach(t=>{
     document.getElementById(t).classList.add("hidden");
@@ -201,6 +202,18 @@ function closeModal(){
   document.getElementById("modal").classList.add("hidden");
 }
 
-document.getElementById("search").addEventListener("input", renderSongs);
+function formatDate(d){
+  const date = new Date(d);
+  return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")} ${String(date.getHours()).padStart(2,"0")}:${String(date.getMinutes()).padStart(2,"0")}`;
+}
+
+//
+// イベント
+//
+document.getElementById("searchSongs").addEventListener("input", renderSongs);
 document.getElementById("sortSongs").addEventListener("change", renderSongs);
+
+document.getElementById("searchStreams").addEventListener("input", renderStreams);
+
+document.getElementById("searchArtists").addEventListener("input", renderArtists);
 document.getElementById("sortArtists").addEventListener("change", renderArtists);

@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>🦊💙 hajime Songs 🍺🦊</title>
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>🦊💙🎵 hajime Songs</title>
+<link rel="stylesheet" href="style.css">
 </head>
 <body class="dark">
 
-<h1>🦊💙 hajime Song List 🍺🦊</h1>
+<h1>🦊💙🎵 hajime Song List</h1>
 
-<div class="controls">
+<div class="tabs">
   <button onclick="showTab('songs')">曲一覧</button>
   <button onclick="showTab('streams')">配信一覧</button>
   <button onclick="showTab('artists')">アーティスト</button>
-
-  <input id="search" placeholder="検索">
 </div>
 
 <!-- 曲一覧 -->
 <div id="songs">
-<select id="sortSongs"></select>
-<table>
-<thead>
-<tr>
-<th>曲名</th>
-<th>アーティスト</th>
-<th>回数</th>
-<th>再生</th>
-</tr>
-</thead>
-<tbody id="songsBody"></tbody>
-</table>
+  <input id="searchSongs" placeholder="曲・アーティスト検索">
+  <select id="sortSongs">
+    <option value="title">曲名</option>
+    <option value="artist">アーティスト</option>
+    <option value="count">回数</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr>
+        <th>曲名</th>
+        <th>アーティスト</th>
+        <th>回数</th>
+        <th>再生（最新配信）</th>
+      </tr>
+    </thead>
+    <tbody id="songsBody"></tbody>
+  </table>
 </div>
 
 <!-- 配信一覧 -->
 <div id="streams" class="hidden">
-<select id="sortStreams"></select>
-<div id="streamsContainer"></div>
+  <input id="searchStreams" placeholder="曲・アーティスト検索">
+  <div id="streamsContainer"></div>
 </div>
 
 <!-- アーティスト -->
 <div id="artists" class="hidden">
-<select id="sortArtists"></select>
-<table>
-<thead>
-<tr>
-<th>アーティスト</th>
-<th>曲</th>
-<th>回数</th>
-</tr>
-</thead>
-<tbody id="artistsBody"></tbody>
-</table>
+  <input id="searchArtists" placeholder="曲・アーティスト検索">
+  <select id="sortArtists">
+    <option value="asc">昇順</option>
+    <option value="desc">降順</option>
+  </select>
+
+  <table>
+    <thead>
+      <tr>
+        <th>アーティスト</th>
+        <th>曲</th>
+        <th>回数</th>
+      </tr>
+    </thead>
+    <tbody id="artistsBody"></tbody>
+  </table>
 </div>
 
 <div id="modal" class="hidden">
-<div id="player"></div>
-<button onclick="closeModal()">閉じる</button>
+  <div id="player"></div>
+  <button onclick="closeModal()">閉じる</button>
 </div>
 
 <script src="app.js"></script>
