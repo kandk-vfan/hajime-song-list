@@ -11,12 +11,16 @@ function extractVideoId(url) {
   return m ? m[1] : "";
 }
 
-function parseLine(line) {
-  const match = line.match(/^(\d{1,2}:\d{2}:\d{2})\s+(.+)$/);
-  if (!match) return null;
+function isTimeLine(line) {
+  return /^\d{1,2}:\d{2}:\d{2}\s/.test(line);
+}
 
-  const time = match[1];
-  const rest = match[2];
+function parseLine(line) {
+  if (!isTimeLine(line)) return null;
+
+  const firstSpace = line.indexOf(" ");
+  const time = line.slice(0, firstSpace);
+  const rest = line.slice(firstSpace + 1);
 
   let title = rest;
   let artist = "";
@@ -32,6 +36,8 @@ function parseLine(line) {
 
 lines.forEach(line => {
   line = line.trim();
+
+  if (!line) return;
 
   if (line.startsWith("video:")) {
     const url = line.replace("video:", "").trim();
