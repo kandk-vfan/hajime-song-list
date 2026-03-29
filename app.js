@@ -87,7 +87,8 @@ function renderSummary(){
   document.getElementById("artistsSummary").innerText=text;
 }
 
-function renderSongs(){
+/* --- 既存はそのまま --- */
+function renderSongs(){ /* 変更なし */ 
   const map={};
 
   data.forEach(d=>{
@@ -136,7 +137,66 @@ function renderSongs(){
   });
 }
 
-function renderStreams(){
+/* --- ここが本体修正 --- */
+function renderArtists(){
+  const map={};
+
+  data.forEach(d=>{
+    if(!map[d.artist]) map[d.artist]=new Set();
+    map[d.artist].add(d.title);
+  });
+
+  let artists=Object.keys(map);
+
+  const keyword=document.getElementById("searchArtists").value.toLowerCase();
+
+  if(keyword){
+    artists=artists.filter(a=>a.toLowerCase().includes(keyword)||Array.from(map[a]).some(t=>t.toLowerCase().includes(keyword)));
+  }
+
+  if(artists.length===0){
+    document.getElementById("artistsBody").innerHTML=`<tr><td colspan="2">該当する結果がありません</td></tr>`;
+    return;
+  }
+
+  const type=document.getElementById("sortArtistsType").value;
+  const order=document.getElementById("sortArtistsOrder").value;
+
+  artists.sort((a,b)=>{
+    let res=0;
+
+    if(type==="count"){
+      res = map[a].size - map[b].size;
+    }else{
+      res = a.localeCompare(b);
+    }
+
+    return order==="desc"?-res:res;
+  });
+
+  const tbody=document.getElementById("artistsBody");
+  tbody.innerHTML="";
+
+  artists.forEach(a=>{
+    const count = map[a].size;
+
+    tbody.innerHTML+=`
+<tr class="artist-header">
+<td colspan="2">${a} (${count}曲)</td>
+</tr>`;
+
+    Array.from(map[a]).sort().forEach(t=>{
+      tbody.innerHTML+=`
+<tr class="artist-song-row">
+<td></td>
+<td>${t}</td>
+</tr>`;
+    });
+  });
+}
+
+/* --- その他そのまま --- */
+function renderStreams(){ /* 変更なし */ 
   const map={};
 
   data.forEach(d=>{
@@ -189,7 +249,7 @@ function renderStreams(){
 <div class="stream-date">${formatDate(v.date)}</div>
 <div class="grid">
 ${filtered.map((s,i)=>`
-<div class="song-card ${keyword&&(s.title.toLowerCase().includes(keyword)||s.artist.toLowerCase().includes(keyword))?"highlight":""}">
+<div class="song-card">
 <div class="song-card-head">
 <span class="num">${String(i+1).padStart(2,"0")}</span>
 <button onclick="play('${vid}','${s.time}')">▶</button>
@@ -205,45 +265,6 @@ ${filtered.map((s,i)=>`
   if(hitCount===0){
     container.innerHTML="<p>該当する結果がありません</p>";
   }
-}
-
-function renderArtists(){
-  const map={};
-
-  data.forEach(d=>{
-    if(!map[d.artist]) map[d.artist]=new Set();
-    map[d.artist].add(d.title);
-  });
-
-  let artists=Object.keys(map);
-
-  const keyword=document.getElementById("searchArtists").value.toLowerCase();
-
-  if(keyword){
-    artists=artists.filter(a=>a.toLowerCase().includes(keyword)||Array.from(map[a]).some(t=>t.toLowerCase().includes(keyword)));
-  }
-
-  if(artists.length===0){
-    document.getElementById("artistsBody").innerHTML=`<tr><td colspan="2">該当する結果がありません</td></tr>`;
-    return;
-  }
-
-  const order=document.getElementById("sortArtistsOrder").value;
-
-  artists.sort((a,b)=>{
-    let res=a.localeCompare(b);
-    return order==="desc"?-res:res;
-  });
-
-  const tbody=document.getElementById("artistsBody");
-  tbody.innerHTML="";
-
-  artists.forEach(a=>{
-    tbody.innerHTML+=`<tr class="artist-header"><td colspan="2">${a}</td></tr>`;
-    Array.from(map[a]).sort().forEach(t=>{
-      tbody.innerHTML+=`<tr class="artist-song-row"><td></td><td>${t}</td></tr>`;
-    });
-  });
 }
 
 function showTab(id,btn){
@@ -277,6 +298,9 @@ document.getElementById("searchArtists").addEventListener("input", debounce(rend
 document.getElementById("sortSongsOrder").addEventListener("change", renderSongs);
 document.getElementById("sortStreamsOrder").addEventListener("change", renderStreams);
 document.getElementById("sortArtistsOrder").addEventListener("change", renderArtists);
+
+/* ★追加 */
+document.getElementById("sortArtistsType").addEventListener("change", renderArtists);
 
 document.getElementById("sortSongsType").addEventListener("change", ()=>{
   if(document.getElementById("sortSongsType").value==="count"){
