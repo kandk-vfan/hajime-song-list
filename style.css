@@ -17,9 +17,10 @@ h1{
   margin-bottom:28px;
   color:#cbd5f5;
   background:#111827;
-  padding:12px 16px;
-  border-radius:10px;
+  padding:6px 12px;
+  border-radius:999px;
   border:1px solid #334155;
+  display:inline-block;
 }
 
 .tabs{
