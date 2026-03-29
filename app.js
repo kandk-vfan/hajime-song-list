@@ -204,9 +204,14 @@ function renderStreams(){
 
   data.forEach(d=>{
     if(!map[d.videoId]){
-      map[d.videoId]={title:d.videoTitle,date:d.date,songs:[]};
+      map[d.videoId]={title:d.videoTitle,latestDate:new Date(d.date),songs:[]};
     }
     map[d.videoId].songs.push(d);
+  
+    const dDate = new Date(d.date);
+    if(dDate > map[d.videoId].latestDate){
+      map[d.videoId].latestDate = dDate;
+    }
   });
 
   let arr=Object.entries(map);
@@ -214,8 +219,8 @@ function renderStreams(){
   const order=document.getElementById("sortStreamsOrder").value;
 
   arr.sort((a,b)=>{
-    const aDate=Math.max(...a[1].songs.map(s=>new Date(s.date)));
-    const bDate=Math.max(...b[1].songs.map(s=>new Date(s.date)));
+    const aDate=a[1].latestDate;
+    const bDate=b[1].latestDate;
     return order==="desc"?bDate-aDate:aDate-bDate;
   });
 
