@@ -16,6 +16,8 @@
 </div>
 
 <div id="songs" class="section">
+  <div class="summary" id="songsSummary"></div>
+
   <div class="toolbar">
     <input id="searchSongs" placeholder="曲・アーティスト検索">
     <select id="sortSongsType">
@@ -28,6 +30,7 @@
       <option value="desc">降順</option>
     </select>
   </div>
+
   <table>
     <thead>
       <tr><th>曲名</th><th>アーティスト</th><th>回数</th><th>再生</th></tr>
@@ -37,6 +40,8 @@
 </div>
 
 <div id="streams" class="section hidden">
+  <div class="summary" id="streamsSummary"></div>
+
   <div class="toolbar">
     <input id="searchStreams" placeholder="曲・アーティスト検索">
   </div>
@@ -44,6 +49,8 @@
 </div>
 
 <div id="artists" class="section hidden">
+  <div class="summary" id="artistsSummary"></div>
+
   <div class="toolbar">
     <input id="searchArtists" placeholder="曲・アーティスト検索">
     <select id="sortArtistsOrder">
@@ -51,6 +58,7 @@
       <option value="desc">降順</option>
     </select>
   </div>
+
   <table>
     <tbody id="artistsBody"></tbody>
   </table>

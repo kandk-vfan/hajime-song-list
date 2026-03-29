@@ -11,6 +11,14 @@ h1{
   font-size:32px;
 }
 
+/* サマリー */
+.summary{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:16px;
+  color:#cbd5f5;
+}
+
 .tabs{
   display:flex;
   gap:12px;
@@ -64,15 +72,21 @@ input{
   min-width:320px;
 }
 
+/* テーブル（ライト化） */
 table{
   width:100%;
   border-collapse:collapse;
-  background:#111827;
+  background:#f8fafc;
+  color:#0f172a;
 }
 
 td,th{
-  border:1px solid #334155;
+  border:1px solid #cbd5e1;
   padding:12px;
+}
+
+th{
+  background:#e2e8f0;
 }
 
 .hidden{
@@ -170,7 +184,7 @@ button:hover{
 /* アーティスト（テーブル） */
 
 .artist-header{
-  background:#020617;
+  background:#e2e8f0;
   font-weight:700;
   font-size:16px;
 }

@@ -12,9 +12,27 @@ function key(d){
 }
 
 function renderAll(){
+  renderSummary();
   renderSongs();
   renderStreams();
   renderArtists();
+}
+
+/* ===== サマリー ===== */
+function renderSummary(){
+  const songSet = new Set();
+  const artistSet = new Set();
+
+  data.forEach(d=>{
+    songSet.add(key(d));
+    artistSet.add(d.artist);
+  });
+
+  const text = `曲数：${songSet.size} / アーティスト数：${artistSet.size}`;
+
+  document.getElementById("songsSummary").innerText = text;
+  document.getElementById("streamsSummary").innerText = text;
+  document.getElementById("artistsSummary").innerText = text;
 }
 
 function renderSongs(){
