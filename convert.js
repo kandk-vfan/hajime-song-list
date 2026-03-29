@@ -7,7 +7,7 @@ const lines = text.split(/\r?\n/);
 
 let videoId = "";
 let videoInfo = null;
-let results = [];
+const results = [];
 
 function extractVideoId(url) {
   const patterns = [
@@ -37,7 +37,7 @@ function fetchVideoInfo(videoId) {
     https.get(url, (res) => {
       let data = "";
 
-      res.on("data", chunk => {
+      res.on("data", (chunk) => {
         data += chunk;
       });
 
@@ -63,21 +63,32 @@ function fetchVideoInfo(videoId) {
 }
 
 function parseSongLine(line) {
-  const match = line.match(/^(\d{1,2}:\d{2}:\d{2})\s+(.+?)\s\/\s(.+)$/);
+  const timeMatch = line.match(/^(\d{1,2}:\d{2}:\d{2})\s+(.*)$/);
+  if (!timeMatch) return null;
 
-  if (!match) return null;
+  const time = timeMatch[1];
+  const rest = timeMatch[2];
+  const separator = " / ";
+  const idx = rest.lastIndexOf(separator);
+
+  if (idx === -1) {
+    return {
+      time,
+      title: rest.trim(),
+      artist: ""
+    };
+  }
 
   return {
-    time: match[1].trim(),
-    title: match[2].trim(),
-    artist: match[3].trim()
+    time,
+    title: rest.slice(0, idx).trim(),
+    artist: rest.slice(idx + separator.length).trim()
   };
 }
 
 (async () => {
-  for (let rawLine of lines) {
+  for (const rawLine of lines) {
     const line = rawLine.trim();
-
     if (!line) continue;
 
     if (line.startsWith("video:")) {
