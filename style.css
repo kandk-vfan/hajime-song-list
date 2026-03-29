@@ -51,6 +51,10 @@ h1{
   flex-wrap:wrap;
 }
 
+.summary{
+  margin-bottom:28px;
+}
+
 input,select{
   background:#1e293b;
   color:#e5e7eb;
