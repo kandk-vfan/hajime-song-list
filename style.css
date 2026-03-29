@@ -88,8 +88,6 @@ input{
   color:#94a3b8;
 }
 
-/* トグル */
-
 .toggle{
   display:flex;
   align-items:center;
@@ -307,6 +305,37 @@ iframe{
   border-radius:12px;
 }
 
+body.streams-light .card{
+  background:#ffffff;
+  border-color:#cbd5e1;
+}
+
+body.streams-light .stream-title-row a{
+  color:#2563eb;
+}
+
+body.streams-light .stream-date{
+  color:#64748b;
+}
+
+body.streams-light .song-card{
+  background:#f8fafc;
+  border-color:#cbd5e1;
+}
+
+body.streams-light .song-card.highlight{
+  background:#e2e8f0;
+  border-color:#3b82f6;
+}
+
+body.streams-light .song-card-artist{
+  color:#64748b;
+}
+
+body.streams-light .num{
+  color:#64748b;
+}
+
 @media (max-width: 1200px){
   .grid{
     grid-template-columns:repeat(4,minmax(0,1fr));
@@ -326,6 +355,10 @@ iframe{
   .toolbar{
     align-items:stretch;
   }
+
+  .theme-switch{
+    margin-left:0;
+  }
 }
 
 @media (max-width: 600px){
@@ -336,21 +369,4 @@ iframe{
   .tab-button{
     width:100%;
   }
-}
-
-/* 追加：配信一覧ライトテーマ */
-
-body.streams-light .card{
-  background:#ffffff;
-  border-color:#cbd5e1;
-}
-
-body.streams-light .song-card{
-  background:#f8fafc;
-  border-color:#cbd5e1;
-}
-
-body.streams-light .song-card.highlight{
-  background:#e2e8f0;
-  border-color:#3b82f6;
 }
