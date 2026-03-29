@@ -5,7 +5,7 @@
   <title>🦊💙🎵 hajime Songs</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="dark">
 
 <h1>🦊💙🎵 hajime Song List</h1>
 
@@ -24,8 +24,6 @@
     <option value="count_desc">回数 ↓</option>
     <option value="count_asc">回数 ↑</option>
   </select>
-
-  <button onclick="toggleDark()">🌙</button>
 </div>
 
 <!-- 曲一覧 -->
@@ -45,15 +43,7 @@
 
 <!-- 配信一覧 -->
 <div id="streams" class="hidden">
-<table>
-  <thead>
-    <tr>
-      <th>配信</th>
-      <th>曲一覧</th>
-    </tr>
-  </thead>
-  <tbody id="streamsBody"></tbody>
-</table>
+<div id="streamsContainer" class="card-container"></div>
 </div>
 
 <!-- アーティスト -->

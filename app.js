@@ -1,11 +1,36 @@
 let data = [];
+let songsCache = [];
 
 fetch("data.json")
   .then(res => res.json())
   .then(json => {
     data = json;
+    buildSongs();
     renderAll();
   });
+
+function buildSongs() {
+  const map = {};
+
+  data.forEach(d => {
+    if (!map[d.songId]) {
+      map[d.songId] = {
+        title: d.title,
+        artist: d.artist,
+        count: 0,
+        latest: d,
+      };
+    }
+
+    map[d.songId].count++;
+
+    if (new Date(d.date) > new Date(map[d.songId].latest.date)) {
+      map[d.songId].latest = d;
+    }
+  });
+
+  songsCache = Object.values(map);
+}
 
 function renderAll() {
   renderSongs();
@@ -14,31 +39,19 @@ function renderAll() {
 }
 
 //
-// 曲一覧
+// 曲一覧（修正済み）
 //
-function renderSongs(list = data) {
-  const map = {};
+function renderSongs() {
+  let arr = [...songsCache];
 
-  list.forEach(d => {
-    const key = d.songId;
+  const keyword = document.getElementById("search").value.toLowerCase();
 
-    if (!map[key]) {
-      map[key] = {
-        title: d.title,
-        artist: d.artist,
-        count: 0,
-        latest: d,
-      };
-    }
-
-    map[key].count++;
-
-    if (new Date(d.date) > new Date(map[key].latest.date)) {
-      map[key].latest = d;
-    }
-  });
-
-  let arr = Object.values(map);
+  if (keyword) {
+    arr = arr.filter(s =>
+      s.title.toLowerCase().includes(keyword) ||
+      s.artist.toLowerCase().includes(keyword)
+    );
+  }
 
   const sortType = document.getElementById("sort").value;
 
@@ -71,7 +84,7 @@ function renderSongs(list = data) {
 }
 
 //
-// 配信一覧
+// 配信一覧（カード化）
 //
 function renderStreams() {
   const map = {};
@@ -86,23 +99,26 @@ function renderStreams() {
     map[d.videoId].songs.push(d.title);
   });
 
-  const tbody = document.getElementById("streamsBody");
-  tbody.innerHTML = "";
+  const container = document.getElementById("streamsContainer");
+  container.innerHTML = "";
 
   Object.entries(map).forEach(([videoId, s]) => {
-    const tr = document.createElement("tr");
+    const div = document.createElement("div");
+    div.className = "card";
 
-    tr.innerHTML = `
-      <td><a href="https://youtube.com/watch?v=${videoId}" target="_blank">${s.title}</a></td>
-      <td>${[...new Set(s.songs)].join(", ")}</td>
+    div.innerHTML = `
+      <a href="https://youtube.com/watch?v=${videoId}" target="_blank">${s.title}</a>
+      <div class="song-grid">
+        ${[...new Set(s.songs)].map(t => `<span>${t}</span>`).join("")}
+      </div>
     `;
 
-    tbody.appendChild(tr);
+    container.appendChild(div);
   });
 }
 
 //
-// アーティスト
+// アーティスト（昇順デフォルト）
 //
 function renderArtists() {
   const map = {};
@@ -123,35 +139,33 @@ function renderArtists() {
   const tbody = document.getElementById("artistsBody");
   tbody.innerHTML = "";
 
-  Object.entries(map).forEach(([artist, songs]) => {
-    Object.values(songs).forEach(s => {
-      const tr = document.createElement("tr");
+  Object.keys(map)
+    .sort((a, b) => a.localeCompare(b))
+    .forEach(artist => {
+      Object.values(map[artist]).forEach(s => {
+        const tr = document.createElement("tr");
 
-      tr.innerHTML = `
-        <td>${artist}</td>
-        <td>${s.title}</td>
-        <td>${s.count}</td>
-      `;
+        tr.innerHTML = `
+          <td>${artist}</td>
+          <td>${s.title}</td>
+          <td>${s.count}</td>
+        `;
 
-      tbody.appendChild(tr);
+        tbody.appendChild(tr);
+      });
     });
-  });
 }
 
 //
-// タブ切り替え
+// UI
 //
 function showTab(id) {
   ["songs", "streams", "artists"].forEach(t => {
     document.getElementById(t).classList.add("hidden");
   });
-
   document.getElementById(id).classList.remove("hidden");
 }
 
-//
-// 再生
-//
 function play(videoId, time) {
   const sec = toSeconds(time);
   const url = `https://www.youtube.com/embed/${videoId}?start=${sec}`;
@@ -171,39 +185,5 @@ function toSeconds(t) {
   return t.split(":").map(Number).reduce((a, b) => a * 60 + b);
 }
 
-//
-// 検索
-//
-document.getElementById("search").addEventListener("input", e => {
-  const val = e.target.value.toLowerCase();
-
-  const filtered = data.filter(d =>
-    d.title.toLowerCase().includes(val) ||
-    d.artist.toLowerCase().includes(val)
-  );
-
-  renderSongs(filtered);
-});
-
-//
-// ソート変更
-//
-document.getElementById("sort").addEventListener("change", () => {
-  renderSongs();
-});
-
-//
-// ダークモード
-//
-function toggleDark() {
-  document.body.classList.toggle("dark");
-
-  localStorage.setItem(
-    "darkMode",
-    document.body.classList.contains("dark")
-  );
-}
-
-if (localStorage.getItem("darkMode") === "true") {
-  document.body.classList.add("dark");
-}
+document.getElementById("search").addEventListener("input", renderSongs);
+document.getElementById("sort").addEventListener("change", renderSongs);

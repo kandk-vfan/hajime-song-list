@@ -19,7 +19,7 @@ table {
 }
 
 td, th {
-  border: 1px solid #ccc;
+  border: 1px solid #334155;
   padding: 8px;
 }
 
@@ -27,12 +27,37 @@ td, th {
   display: none;
 }
 
+/* カード */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.card {
+  padding: 15px;
+  border: 1px solid #334155;
+  border-radius: 8px;
+}
+
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 5px;
+  margin-top: 10px;
+}
+
+.song-grid span {
+  font-size: 12px;
+}
+
+/* モーダル */
 #modal {
   position: fixed;
   top: 10%;
   left: 10%;
   width: 80%;
-  background: white;
+  background: #020617;
   padding: 20px;
 }
 
@@ -41,33 +66,13 @@ iframe {
   height: 400px;
 }
 
-/* ダークモード */
-
-body.dark {
+/* ダーク固定 */
+body {
   background: #0f172a;
   color: #e5e7eb;
 }
 
-body.dark table {
-  border-color: #334155;
-}
-
-body.dark td, body.dark th {
-  border: 1px solid #334155;
-}
-
-body.dark button {
-  background: #1e293b;
-  color: #e5e7eb;
-}
-
-body.dark input, 
-body.dark select {
-  background: #1e293b;
-  color: #e5e7eb;
-  border: 1px solid #334155;
-}
-
-body.dark #modal {
-  background: #020617;
+/* リンク修正 */
+a {
+  color: #93c5fd;
 }
