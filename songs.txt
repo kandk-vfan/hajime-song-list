@@ -1,3 +1,4 @@
-video httpswww.youtube.comwatchv=dQw4w9WgXcQ
+video: https://www.youtube.com/watch?v=dQw4w9WgXcQ
 
-00000 テスト曲 / テストアーティスト
+0:00:00 テスト曲1 / テストアーティスト1
+0:05:00 テスト曲2 / テストアーティスト2
