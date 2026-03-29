@@ -87,8 +87,7 @@ function renderSummary(){
   document.getElementById("artistsSummary").innerText=text;
 }
 
-/* --- 既存はそのまま --- */
-function renderSongs(){ /* 変更なし */ 
+function renderSongs(){
   const map={};
 
   data.forEach(d=>{
@@ -137,7 +136,6 @@ function renderSongs(){ /* 変更なし */
   });
 }
 
-/* --- ここが本体修正 --- */
 function renderArtists(){
   const map={};
 
@@ -195,8 +193,7 @@ function renderArtists(){
   });
 }
 
-/* --- その他そのまま --- */
-function renderStreams(){ /* 変更なし */ 
+function renderStreams(){
   const map={};
 
   data.forEach(d=>{
@@ -299,8 +296,12 @@ document.getElementById("sortSongsOrder").addEventListener("change", renderSongs
 document.getElementById("sortStreamsOrder").addEventListener("change", renderStreams);
 document.getElementById("sortArtistsOrder").addEventListener("change", renderArtists);
 
-/* ★追加 */
-document.getElementById("sortArtistsType").addEventListener("change", renderArtists);
+document.getElementById("sortArtistsType").addEventListener("change", ()=>{
+  if(document.getElementById("sortArtistsType").value === "count"){
+    document.getElementById("sortArtistsOrder").value = "desc";
+  }
+  renderArtists();
+});
 
 document.getElementById("sortSongsType").addEventListener("change", ()=>{
   if(document.getElementById("sortSongsType").value==="count"){
