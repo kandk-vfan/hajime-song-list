@@ -72,6 +72,22 @@ function key(d){
   return normalize(d.title) + "||" + normalize(d.artist);
 }
 
+/* ★追加：ユニーク集約を共通化 */
+function buildSongMap(){
+  const map = {};
+
+  data.forEach(d=>{
+    const k = key(d);
+    if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
+    map[k].count++;
+    if(new Date(d.date)>new Date(map[k].latest.date)){
+      map[k].latest=d;
+    }
+  });
+
+  return map;
+}
+
 function renderAll(){
   renderSummary();
   renderSongs();
@@ -79,17 +95,18 @@ function renderAll(){
   renderArtists();
 }
 
+/* ★修正：Set → mapベースに変更 */
 function renderSummary(){
-  const songSet=new Set();
-  const artistSet=new Set();
+  const map = buildSongMap();
+  const songCount = Object.keys(map).length;
 
+  const artistSet=new Set();
   data.forEach(d=>{
-    songSet.add(key(d));
     artistSet.add(d.artist);
   });
 
   const html = `
-  <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songSet.size}</span></div>
+  <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songCount}</span></div>
   <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${data.length}</span></div>
   <div class="summary-row"><span class="label">アーティスト数</span><span class="value">${artistSet.size}</span></div>
   `;
@@ -99,17 +116,9 @@ function renderSummary(){
   document.getElementById("artistsSummary").innerHTML = html;
 }
 
+/* ★修正：mapを共通関数に変更 */
 function renderSongs(){
-  const map={};
-
-  data.forEach(d=>{
-    const k=key(d);
-    if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
-    map[k].count++;
-    if(new Date(d.date)>new Date(map[k].latest.date)){
-      map[k].latest=d;
-    }
-  });
+  const map = buildSongMap();
 
   let arr=Object.values(map);
 
@@ -149,6 +158,8 @@ function renderSongs(){
 
   tbody.innerHTML=html;
 }
+
+/* 以下は変更なし */
 
 function renderArtists(){
   const map={};
