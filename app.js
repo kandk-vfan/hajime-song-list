@@ -72,7 +72,6 @@ function key(d){
   return normalize(d.title) + "||" + normalize(d.artist);
 }
 
-/* ★追加：ユニーク集約を共通化 */
 function buildSongMap(){
   const map = {};
 
@@ -95,7 +94,6 @@ function renderAll(){
   renderArtists();
 }
 
-/* ★修正：Set → mapベースに変更 */
 function renderSummary(){
   const map = buildSongMap();
   const songCount = Object.keys(map).length;
@@ -116,7 +114,6 @@ function renderSummary(){
   document.getElementById("artistsSummary").innerHTML = html;
 }
 
-/* ★修正：mapを共通関数に変更 */
 function renderSongs(){
   const map = buildSongMap();
 
@@ -158,8 +155,6 @@ function renderSongs(){
 
   tbody.innerHTML=html;
 }
-
-/* 以下は変更なし */
 
 function renderArtists(){
   const map={};
