@@ -3,11 +3,7 @@ let data = [];
 const STORAGE_KEY = "tableTheme";
 
 function normalize(str){
-  return String(str ?? "")
-    .normalize("NFKC")
-    .trim()
-    .replace(/\s+/g, " ")
-    .toLowerCase();
+  return str.replace(/^[\s　]+|[\s　]+$/g, "");
 }
 
 function debounce(fn, delay=300){
@@ -56,12 +52,8 @@ fetch("data.json")
   .then(j=>{
     data = j.map(d => ({
       ...d,
-      title: String(d.title ?? "").trim(),
-      artist: String(d.artist ?? "").trim(),
-      videoTitle: String(d.videoTitle ?? "").trim(),
-      time: String(d.time ?? "").trim(),
-      videoId: String(d.videoId ?? "").trim(),
-      date: String(d.date ?? "").trim()
+      title: normalize(d.title),
+      artist: normalize(d.artist)
     }));
     renderAll();
     applyTheme();
@@ -69,22 +61,7 @@ fetch("data.json")
   });
 
 function key(d){
-  return normalize(d.title) + "||" + normalize(d.artist);
-}
-
-function buildSongMap(){
-  const map = {};
-
-  data.forEach(d=>{
-    const k = key(d);
-    if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
-    map[k].count++;
-    if(new Date(d.date)>new Date(map[k].latest.date)){
-      map[k].latest=d;
-    }
-  });
-
-  return map;
+  return d.title + "||" + d.artist;
 }
 
 function renderAll(){
@@ -95,16 +72,16 @@ function renderAll(){
 }
 
 function renderSummary(){
-  const map = buildSongMap();
-  const songCount = Object.keys(map).length;
-
+  const songSet=new Set();
   const artistSet=new Set();
+
   data.forEach(d=>{
+    songSet.add(key(d));
     artistSet.add(d.artist);
   });
 
   const html = `
-  <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songCount}</span></div>
+  <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songSet.size}</span></div>
   <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${data.length}</span></div>
   <div class="summary-row"><span class="label">アーティスト数</span><span class="value">${artistSet.size}</span></div>
   `;
@@ -115,7 +92,16 @@ function renderSummary(){
 }
 
 function renderSongs(){
-  const map = buildSongMap();
+  const map={};
+
+  data.forEach(d=>{
+    const k=key(d);
+    if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
+    map[k].count++;
+    if(new Date(d.date)>new Date(map[k].latest.date)){
+      map[k].latest=d;
+    }
+  });
 
   let arr=Object.values(map);
 
