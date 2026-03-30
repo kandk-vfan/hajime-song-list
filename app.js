@@ -3,7 +3,11 @@ let data = [];
 const STORAGE_KEY = "tableTheme";
 
 function normalize(str){
-  return str.replace(/^[\s　]+|[\s　]+$/g, "");
+  return String(str ?? "")
+    .normalize("NFKC")
+    .trim()
+    .replace(/\s+/g, " ")
+    .toLowerCase();
 }
 
 function debounce(fn, delay=300){
@@ -53,7 +57,11 @@ fetch("data.json")
     data = j.map(d => ({
       ...d,
       title: normalize(d.title),
-      artist: normalize(d.artist)
+      artist: normalize(d.artist),
+      videoTitle: String(d.videoTitle ?? "").trim(),
+      time: String(d.time ?? "").trim(),
+      videoId: String(d.videoId ?? "").trim(),
+      date: String(d.date ?? "").trim()
     }));
     renderAll();
     applyTheme();
@@ -61,7 +69,7 @@ fetch("data.json")
   });
 
 function key(d){
-  return d.title + "||" + d.artist;
+  return normalize(d.title) + "||" + normalize(d.artist);
 }
 
 function renderAll(){
