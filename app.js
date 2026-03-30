@@ -242,8 +242,14 @@ function renderStreams(){
       }
     });
 
-    const filtered=unique.filter(s=>!keyword||s.title.toLowerCase().includes(keyword)||s.artist.toLowerCase().includes(keyword));
-    if(filtered.length===0) return;
+    const filtered = unique;
+    
+    function isMatch(s){
+      if(!keyword) return false;
+      return s.title.toLowerCase().includes(keyword) || s.artist.toLowerCase().includes(keyword);
+    }
+    
+    if(keyword && !unique.some(isMatch)) return;
 
     hitCount++;
 
@@ -257,7 +263,7 @@ function renderStreams(){
 <div class="stream-date">${formatDate(v.date)}</div>
 <div class="grid">
 ${filtered.map((s,i)=>`
-<div class="song-card">
+<div class="song-card ${isMatch(s) ? "highlight" : ""}">
 <div class="song-card-head">
 <span class="num">${String(i+1).padStart(2,"0")}</span>
 <button onclick="play('${vid}','${s.time}')">▶</button>
