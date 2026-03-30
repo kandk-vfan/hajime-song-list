@@ -260,7 +260,7 @@ function renderStreams(){
 <div class="stream-title-row">
 <a href="https://youtube.com/watch?v=${vid}" target="_blank">${v.title}</a>
 </div>
-<div class="stream-date">${formatDate(v.date)}</div>
+<div class="stream-date">${formatDate(v.latestDate)}</div>
 <div class="grid">
 ${filtered.map((s,i)=>`
 <div class="song-card ${isMatch(s) ? "highlight" : ""}">
