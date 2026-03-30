@@ -80,7 +80,7 @@ function renderSummary(){
     artistSet.add(d.artist);
   });
 
-  const text=`曲数：${songSet.size} / 歌唱回数：${data.length}\nアーティスト数：${artistSet.size}`;
+  const text=`曲数：${songSet.size}\n歌唱回数：${data.length}\nアーティスト数：${artistSet.size}`;
 
   document.getElementById("songsSummary").innerText=text;
   document.getElementById("streamsSummary").innerText=text;
