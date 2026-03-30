@@ -216,21 +216,12 @@ function renderStreams(){
 
   let arr=Object.entries(map);
 
-  const type = document.getElementById("sortStreamsType").value;
-  const order = document.getElementById("sortStreamsOrder").value;
-  
+  const order=document.getElementById("sortStreamsOrder").value;
+
   arr.sort((a,b)=>{
-    let res = 0;
-  
-    if(type==="count"){
-      res = a[1].songs.length - b[1].songs.length;
-    }else{
-      const aDate=a[1].latestDate;
-      const bDate=b[1].latestDate;
-      res = aDate - bDate;
-    }
-  
-    return order==="desc" ? -res : res;
+    const aDate=a[1].latestDate;
+    const bDate=b[1].latestDate;
+    return order==="desc"?bDate-aDate:aDate-bDate;
   });
 
   const keyword=document.getElementById("searchStreams").value.toLowerCase();
@@ -322,31 +313,20 @@ document.getElementById("sortSongsOrder").addEventListener("change", renderSongs
 document.getElementById("sortStreamsOrder").addEventListener("change", renderStreams);
 document.getElementById("sortArtistsOrder").addEventListener("change", renderArtists);
 
-const type = document.getElementById("sortArtistsType").value;
-if(type==="count"){
-  document.getElementById("sortArtistsOrder").value="desc";
-}else{
-  document.getElementById("sortArtistsOrder").value="asc";
-}
+document.getElementById("sortArtistsType").addEventListener("change", ()=>{
+  if(document.getElementById("sortArtistsType").value === "count"){
+    document.getElementById("sortArtistsOrder").value = "desc";
+  }
+  renderArtists();
+});
 
-const type = document.getElementById("sortSongsType").value;
-if(type==="count"){
-  document.getElementById("sortSongsOrder").value="desc";
-}else{
-  document.getElementById("sortSongsOrder").value="asc";
-}
+document.getElementById("sortSongsType").addEventListener("change", ()=>{
+  if(document.getElementById("sortSongsType").value==="count"){
+    document.getElementById("sortSongsOrder").value="desc";
+  }
+  renderSongs();
+});
 
 document.getElementById("themeToggleSongs").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleStreams").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleArtists").addEventListener("change", toggleTheme);
-document.getElementById("sortStreamsType").addEventListener("change", ()=>{
-  const type = document.getElementById("sortStreamsType").value;
-
-  if(type==="count"){
-    document.getElementById("sortStreamsOrder").value="desc";
-  }else{
-    document.getElementById("sortStreamsOrder").value="asc";
-  }
-
-  renderStreams();
-});
