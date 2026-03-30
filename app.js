@@ -81,7 +81,7 @@ function renderSummary(){
   });
 
   const html = `
-  <div class="summary-row"><span class="label">曲数</span><span class="value">${songSet.size}</span></div>
+  <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songSet.size}</span></div>
   <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${data.length}</span></div>
   <div class="summary-row"><span class="label">アーティスト数</span><span class="value">${artistSet.size}</span></div>
   `;
