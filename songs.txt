@@ -278,8 +278,8 @@ video: https://www.youtube.com/watch?v=xey0z5Q5wOM
 0:22:49 ルカルカ★ナイトフィーバー / samfree
 0:29:31 WAVE / niki
 0:34:55 ELECT / niki
-0:39:56 マイルームディスコナイト / EasyPop
-0:48:53 スイートタイム / EasyPop
+0:39:56 マイルームディスコナイト / Easy Pop
+0:48:53 スウィートタイム / Easy Pop
 0:55:18 ルーマー / ポリスピカデリー
 1:01:14 TAIDADA / ずっと真夜中でいいのに。
 1:14:22 小夜子 / みきとP
@@ -574,7 +574,7 @@ video: https://www.youtube.com/watch?v=ie4LTKtbJ_E
 1:09:15 unravel / TK from 凛として時雨
 1:17:05 大事な宝箱 / 七海るちあ(中田あすみ)
 1:23:29 怪物 / YOASOBI
-1:34:53 桜色舞うころ / 中島 美嘉
+1:34:53 桜色舞うころ / 中島美嘉
 1:42:50 SAKURA / MONKEY MAJIK
 1:52:54 空はまるで / MONKEY MAJIK
 2:01:28 けんかをやめて / 河合奈保子
@@ -702,7 +702,7 @@ video: https://www.youtube.com/watch?v=NzoDtsazY2g
 
 0:06:13 桜流し / 宇多田ヒカル
 0:14:48 Caffeine / 秋山黄色
-0:22:36 デジタルラヴ / WurtS
+0:22:36 デジタルラブ / WurtS feat. 星街すいせい
 0:29:29 「僕は...」 / あたらよ
 0:36:06 祝日天国 / 35.7
 0:43:37 革命道中 / アイナ・ジ・エンド
@@ -792,7 +792,7 @@ video: https://www.youtube.com/watch?v=KlCUZJRiZsc
 2:05:08 after this / におP 
 2:12:13 余所事 / におP 
 2:25:25 Tómur / におP 
-2:31:40 指結い / におP 
+2:31:40 指結い。 / におP 
 2:38:39 rain stops, good-bye / におP
 
 video: https://www.youtube.com/watch?v=og0sG4YPG5Q
@@ -1176,7 +1176,7 @@ video: https://www.youtube.com/watch?v=uwPohqny1tM
 0:34:30 LIFE / YUI
 0:54:13 祝日天国 / 35.7
 1:04:21 ギミギミック / RADWIMPS
-1:11:56 夜もすがら君を想ふ / TOKOTOKO(西沢さんP)
+1:11:56 夜もすがら君想ふ / TOKOTOKO(西沢さんP)
 1:18:26 ます。 / RADWIMPS
 1:27:49 女狐 / ロス
 1:44:37 TAIDADA / ずっと真夜中でいいのに。
@@ -1553,7 +1553,7 @@ via: https://www.youtube.com/watch?v=iCqXGCppXag
 0:44:50 不可幸力 / Vaundy
 0:50:55 again / YUI
 1:02:46 ガラナ / スキマスイッチ
-1:11:05 PIECES OF A DREAM / ケミストリー
+1:11:05 PIECES OF A DREAM / CHEMISTRY
 1:18:36 青いベンチ / サスケ
 1:28:14 魂のルフラン / 高橋洋子
 1:35:41 もってけ!セーラーふく / 泉こなた(平野綾)・柊かがみ(加藤英美里)・柊つかさ(福原香織)・高良みゆき(遠藤綾)
@@ -1821,7 +1821,7 @@ video: https://www.youtube.com/watch?v=LjloafftgxY
 1:53:43 十六夜涙 / 吉岡亜衣加
 2:01:26 ダイアモンド クレバス / シェリル・ノーム starring May'n
 2:11:58 桜色舞うころに / 中島美嘉
-2:19:23 Arrietty's song / セシル・コルベル
+2:19:23 Arrietty's Song / セシル・コルベル
 2:24:51 CRY / SawanoHiroyuki[nZk]:mizuki
 2:31:53 フクロウ～フロウが知らせる客が来たと～ / KOKIA
 
