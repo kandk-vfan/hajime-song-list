@@ -35,7 +35,7 @@ h1{
 .summary{
   font-size:16px;
   font-weight:700;
-  margin-bottom:28px;
+  margin-bottom:0;
   color:#cbd5f5;
   background:#111827;
   padding:8px 16px;
@@ -47,19 +47,15 @@ h1{
 
 .summary-row-wrap{
   display:flex;
-  align-items:flex-start;
+  align-items:stretch;
   gap:16px;
+  margin-bottom:28px;
 }
 
 .filter-area{
   display:flex;
   flex-direction:column;
-  gap:8px;
-  justify-content:flex-start;
-}
-
-.filter-message{
-  margin-top:4px;
+  justify-content:space-between;
 }
 
 .label{
