@@ -497,13 +497,15 @@ document.querySelectorAll(".endDate").forEach(el=>{
   });
 });
 
-document.getElementById("resetDate").addEventListener("click", ()=>{
+document.addEventListener("click", (e)=>{
+  if(!e.target.classList.contains("resetDate")) return;
+
   currentRangeType = null;
 
   syncDateInputs("", "");
 
-  document.querySelectorAll(".quick-buttons button").forEach(btn=>{
-    btn.classList.remove("active");
+  document.querySelectorAll(".quick-buttons button").forEach(b=>{
+    b.classList.remove("active");
   });
 
   renderAll();
