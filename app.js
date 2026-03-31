@@ -4,29 +4,35 @@ let currentRangeType = null;
 const STORAGE_KEY = "tableTheme";
 const MONETIZED_DATE = new Date("2026-02-23");
 
+function toLocalDateString(dateStr){
+  const d = new Date(dateStr);
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,"0");
+  const day = String(d.getDate()).padStart(2,"0");
+  return `${y}-${m}-${day}`;
+}
+
 function getFilteredData(){
   const isMonetizedOnly = document.querySelector(".monetizedToggle")?.checked;
 
   let result = data;
 
   if(isMonetizedOnly){
-    result = result.filter(d => new Date(d.date + "T00:00:00") >= MONETIZED_DATE);
+    result = result.filter(d => toLocalDateString(d.date) >= toLocalDateString(MONETIZED_DATE));
   }
 
   const startEl = document.querySelector(".startDate");
   const endEl = document.querySelector(".endDate");
 
-  const start = startEl ? startEl.value : "";
-  const end = endEl ? endEl.value : "";
+  const start = startEl?.value;
+  const end = endEl?.value;
 
   if(start){
-    const startDate = new Date(start + "T00:00:00");
-    result = result.filter(d => new Date(d.date + "T00:00:00") >= startDate);
+    result = result.filter(d => toLocalDateString(d.date) >= start);
   }
-  
+
   if(end){
-    const endDate = new Date(end + "T23:59:59");
-    result = result.filter(d => new Date(d.date + "T00:00:00") <= endDate);
+    result = result.filter(d => toLocalDateString(d.date) <= end);
   }
 
   return result;
