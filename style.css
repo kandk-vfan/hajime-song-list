@@ -556,3 +556,7 @@ body.streams-light #artistsTable tr.artist-header td{
   color:#0f172a;
   border-top:2px solid #3b82f6;
 }
+
+.quick-buttons{
+  margin-left:calc(1em + 8px);
+}
