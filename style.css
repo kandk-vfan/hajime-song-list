@@ -144,7 +144,7 @@ h1{
 
 .toolbar{
   display:flex;
-  gap:16px;
+  gap:20px;
   align-items:center;
   margin-bottom:20px;
   flex-wrap:wrap;
