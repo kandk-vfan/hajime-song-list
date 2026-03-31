@@ -12,8 +12,10 @@ function getFilteredData(){
     result = result.filter(d => new Date(d.date) > MONETIZED_DATE);
   }
 
-  const startEl = document.querySelector(".startDate");
-  const endEl = document.querySelector(".endDate");
+  const activeSection = document.querySelector(".section:not(.hidden)");
+
+  const startEl = activeSection?.querySelector(".startDate");
+  const endEl = activeSection?.querySelector(".endDate");
 
   const start = startEl ? startEl.value : "";
   const end = endEl ? endEl.value : "";
