@@ -561,3 +561,15 @@ body.streams-light #artistsTable tr.artist-header td{
 .quick-buttons{
   margin-left:4.5em;
 }
+
+.clear-btn{
+  white-space:nowrap;
+}
+
+.toolbar input{
+  margin-right:-8px;
+}
+
+.toolbar .clear-btn{
+  margin-right:8px;
+}
