@@ -32,7 +32,7 @@ function fetchVideoInfo(videoId) {
       return;
     }
 
-    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet&id=${videoId}&key=${API_KEY}`;
+    const url = `https://www.googleapis.com/youtube/v3/videos?part=snippet,liveStreamingDetails&id=${videoId}&key=${API_KEY}`;
 
     https.get(url, (res) => {
       let data = "";
@@ -50,9 +50,13 @@ function fetchVideoInfo(videoId) {
             return;
           }
 
+          const item = json.items[0];
+
           resolve({
-            title: json.items[0].snippet.title,
-            date: json.items[0].snippet.publishedAt
+            title: item.snippet.title,
+            date:
+              item.liveStreamingDetails?.actualStartTime
+              || item.snippet.publishedAt
           });
         } catch (error) {
           reject(error);
