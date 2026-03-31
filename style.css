@@ -16,6 +16,13 @@ h1{
   font-size:32px;
 }
 
+.global-toggle{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:16px;
+}
+
 .summary{
   font-size:16px;
   font-weight:700;
