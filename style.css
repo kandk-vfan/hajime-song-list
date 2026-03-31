@@ -502,9 +502,8 @@ iframe{
 }
 
 #songsTable td{
-  overflow:hidden;
-  text-overflow:ellipsis;
-  white-space:nowrap;
+  white-space:normal;
+  word-break:break-word;
 }
 
 #artistsTable tr.artist-header td{
