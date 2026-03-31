@@ -362,3 +362,14 @@ document.getElementById("themeToggleSongs").addEventListener("change", toggleThe
 document.getElementById("themeToggleStreams").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleArtists").addEventListener("change", toggleTheme);
 document.getElementById("monetizedToggle").addEventListener("change", renderAll);
+document.querySelectorAll(".monetizedToggle").forEach(el=>{
+  el.addEventListener("change", ()=>{
+    const checked = el.checked;
+
+    document.querySelectorAll(".monetizedToggle").forEach(t=>{
+      t.checked = checked;
+    });
+
+    renderAll();
+  });
+});
