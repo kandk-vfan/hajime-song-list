@@ -1,14 +1,14 @@
 let data = [];
 
 const STORAGE_KEY = "tableTheme";
-const MONETIZED_DATE = new Date("2026-02-24");
+const MONETIZED_DATE = new Date("2026-02-23");
 
 function getFilteredData(){
   const isMonetizedOnly = document.getElementById("monetizedToggle")?.checked;
 
   if(!isMonetizedOnly) return data;
 
-  return data.filter(d => new Date(d.date) >= MONETIZED_DATE);
+  return data.filter(d => new Date(d.date) > MONETIZED_DATE);
 }
 
 function normalize(str){
