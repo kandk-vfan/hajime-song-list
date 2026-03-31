@@ -535,10 +535,16 @@ iframe{
 body.streams-light #artistsTable tr.artist-header td{
   background:#e2e8f0;
   color:#0f172a;
-  border-color:#cbd5e1;
+  border:1px solid #94a3b8;
+  border-bottom:none;
 }
 
 body.streams-light #artistsTable tr.artist-song-row td{
   background:#ffffff;
-  border-color:#cbd5e1;
+  border-left:1px solid #94a3b8;
+  border-right:1px solid #94a3b8;
+}
+
+body.streams-light #artistsTable tr.artist-song-row:last-of-type td{
+  border-bottom:1px solid #94a3b8;
 }
