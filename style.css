@@ -581,6 +581,6 @@ body.streams-light #artistsTable tr.artist-header td{
 
 .startDate,
 .endDate{
-  width:140px;
+  width:160px;
   min-width:unset;
 }
