@@ -2,7 +2,7 @@ body{
   background:#0f172a;
   color:#e5e7eb;
   font-family:sans-serif;
-  padding:24px 0;
+  padding:24px 16px;
   margin:0 auto;
   max-width:1450px;
 }
@@ -140,7 +140,6 @@ h1{
 
 .section{
   margin-top:8px;
-  padding:0 16px;
 }
 
 .toolbar{
