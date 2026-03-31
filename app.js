@@ -511,3 +511,8 @@ document.querySelectorAll(".quick-buttons button:not([data-type])").forEach(btn=
     renderAll();
   });
 });
+
+document.getElementById("clearSongs").addEventListener("click", ()=>{
+  document.getElementById("searchSongs").value = "";
+  renderSongs();
+});
