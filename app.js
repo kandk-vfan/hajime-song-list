@@ -516,3 +516,13 @@ document.getElementById("clearSongs").addEventListener("click", ()=>{
   document.getElementById("searchSongs").value = "";
   renderSongs();
 });
+
+document.getElementById("clearStreams").addEventListener("click", ()=>{
+  document.getElementById("searchStreams").value = "";
+  renderStreams();
+});
+
+document.getElementById("clearArtists").addEventListener("click", ()=>{
+  document.getElementById("searchArtists").value = "";
+  renderArtists();
+});
