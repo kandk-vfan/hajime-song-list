@@ -218,11 +218,11 @@ function renderStreams(){
 
   getFilteredData().forEach(d=>{
     if(!map[d.videoId]){
-      map[d.videoId]={title:d.videoTitle,latestDate:new Date(d.date),songs:[]};
+      map[d.videoId]={title:d.videoTitle,latestDate:new Date(d.date + "T00:00:00"),songs:[]};
     }
     map[d.videoId].songs.push(d);
   
-    const dDate = new Date(d.date);
+    const dDate = new Date(d.date + "T00:00:00");
     if(dDate > map[d.videoId].latestDate){
       map[d.videoId].latestDate = dDate;
     }
@@ -313,7 +313,7 @@ function closeModal(){
 }
 
 function formatDate(d){
-  const date=new Date(d);
+  const date = (d instanceof Date) ? d : new Date(d + "T00:00:00");
   return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")}`;
 }
 
