@@ -49,7 +49,7 @@ h1{
 
 .summary-row-wrap{
   display:grid;
-  grid-template-columns:auto auto 1fr;
+  grid-template-columns:auto minmax(260px,320px) minmax(420px,1fr);
   align-items:stretch;
   gap:16px;
   margin-bottom:28px;
