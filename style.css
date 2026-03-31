@@ -21,6 +21,10 @@ h1{
   align-items:center;
   gap:12px;
   margin-bottom:16px;
+  padding:10px 14px;
+  border-radius:12px;
+  border:1px solid #334155;
+  background:#111827;
 }
 
 .filter-label{
