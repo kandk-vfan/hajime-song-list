@@ -2,24 +2,6 @@ let data = [];
 
 const STORAGE_KEY = "tableTheme";
 
-function toDateSafe(v){
-  if(v instanceof Date) return v;
-  if(typeof v === "string"){
-    return new Date(v.includes("T") ? v : v + "T00:00:00");
-  }
-  return new Date(NaN);
-}
-
-function getFilteredData(){
-  const isOn = document.getElementById("monetizedToggle").checked;
-
-  if(!isOn) return data;
-
-  const border = new Date("2026-02-23");
-
-  return data.filter(d => toDateSafe(d.date) > border);
-}
-
 function normalize(str){
   return str.replace(/^[\s　]+|[\s　]+$/g, "");
 }
@@ -93,14 +75,14 @@ function renderSummary(){
   const songSet=new Set();
   const artistSet=new Set();
 
-  getFilteredData().forEach(d=>{
+  data.forEach(d=>{
     songSet.add(key(d));
     artistSet.add(d.artist);
   });
 
   const html = `
   <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songSet.size}</span></div>
-  <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${getFilteredData().length}</span></div>
+  <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${data.length}</span></div>
   <div class="summary-row"><span class="label">アーティスト数</span><span class="value">${artistSet.size}</span></div>
   `;
 
@@ -112,11 +94,11 @@ function renderSummary(){
 function renderSongs(){
   const map={};
 
-  getFilteredData().forEach(d=>{
+  data.forEach(d=>{
     const k=key(d);
     if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
     map[k].count++;
-    if(toDateSafe(d.date) > toDateSafe(map[k].latest.date)){
+    if(new Date(d.date)>new Date(map[k].latest.date)){
       map[k].latest=d;
     }
   });
@@ -163,7 +145,7 @@ function renderSongs(){
 function renderArtists(){
   const map={};
 
-  getFilteredData().forEach(d=>{
+  data.forEach(d=>{
     if(!map[d.artist]) map[d.artist]=new Set();
     map[d.artist].add(d.title);
   });
@@ -224,13 +206,13 @@ function renderArtists(){
 function renderStreams(){
   const map={};
 
-  getFilteredData().forEach(d=>{
+  data.forEach(d=>{
     if(!map[d.videoId]){
-      map[d.videoId]={title:d.videoTitle,latestDate: toDateSafe(d.date),songs:[]};
+      map[d.videoId]={title:d.videoTitle,latestDate:new Date(d.date),songs:[]};
     }
     map[d.videoId].songs.push(d);
   
-    const dDate = toDateSafe(d.date);
+    const dDate = new Date(d.date);
     if(dDate > map[d.videoId].latestDate){
       map[d.videoId].latestDate = dDate;
     }
@@ -264,6 +246,8 @@ function renderStreams(){
       }
     });
 
+    const filtered = unique;
+    
     function isMatch(s){
       if(!keyword) return false;
       return s.title.toLowerCase().includes(keyword) || s.artist.toLowerCase().includes(keyword);
@@ -282,7 +266,7 @@ function renderStreams(){
 </div>
 <div class="stream-date">${formatDate(v.latestDate)}</div>
 <div class="grid">
-${unique.map((s,i)=>`
+${filtered.map((s,i)=>`
 <div class="song-card ${isMatch(s) ? "highlight" : ""}">
 <div class="song-card-head">
 <span class="num">${String(i+1).padStart(2,"0")}</span>
@@ -321,18 +305,7 @@ function closeModal(){
 }
 
 function formatDate(d){
-  let date;
-
-  if(d instanceof Date){
-    date = d;
-  }else if(typeof d === "string"){
-    date = new Date(d.includes("T") ? d : d + "T00:00:00");
-  }else{
-    return "";
-  }
-
-  if(isNaN(date.getTime())) return "";
-
+  const date=new Date(d);
   return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")}`;
 }
 
@@ -371,4 +344,3 @@ document.getElementById("sortSongsType").addEventListener("change", ()=>{
 document.getElementById("themeToggleSongs").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleStreams").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleArtists").addEventListener("change", toggleTheme);
-document.getElementById("monetizedToggle").addEventListener("change", renderAll);
