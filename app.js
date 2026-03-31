@@ -2,6 +2,11 @@ let data = [];
 
 const STORAGE_KEY = "tableTheme";
 
+function parseDateJST(str){
+  const [y,m,d] = str.split("-").map(Number);
+  return new Date(y, m-1, d);
+}
+
 function normalize(str){
   return str.replace(/^[\s　]+|[\s　]+$/g, "");
 }
@@ -98,7 +103,7 @@ function renderSongs(){
     const k=key(d);
     if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
     map[k].count++;
-    if(new Date(d.date)>new Date(map[k].latest.date)){
+    if(parseDateJST(d.date)>parseDateJST(map[k].latest.date)){
       map[k].latest=d;
     }
   });
@@ -208,11 +213,11 @@ function renderStreams(){
 
   data.forEach(d=>{
     if(!map[d.videoId]){
-      map[d.videoId]={title:d.videoTitle,latestDate:new Date(d.date),songs:[]};
+      map[d.videoId]={title:d.videoTitle,latestDate:parseDateJST(d.date),songs:[]};
     }
     map[d.videoId].songs.push(d);
   
-    const dDate = new Date(d.date);
+    const dDate = parseDateJST(d.date);
     if(dDate > map[d.videoId].latestDate){
       map[d.videoId].latestDate = dDate;
     }
@@ -305,7 +310,7 @@ function closeModal(){
 }
 
 function formatDate(d){
-  const date=new Date(d);
+  const date = d instanceof Date ? d : parseDateJST(d);
   return `${date.getFullYear()}/${String(date.getMonth()+1).padStart(2,"0")}/${String(date.getDate()).padStart(2,"0")}`;
 }
 
