@@ -7,6 +7,24 @@ body{
   max-width:1300px;
 }
 
+.global-filter{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  margin-bottom:20px;
+  padding:10px 16px;
+  border:1px solid #334155;
+  border-radius:12px;
+  background:#111827;
+  font-weight:700;
+}
+
+body.streams-light .global-filter{
+  background:#f8fafc;
+  border-color:#cbd5e1;
+  color:#0f172a;
+}
+
 th{
   white-space: nowrap;
 }
