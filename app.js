@@ -1,4 +1,5 @@
 let data = [];
+let currentRangeType = null;
 
 const STORAGE_KEY = "tableTheme";
 const MONETIZED_DATE = new Date("2026-02-23");
@@ -46,6 +47,16 @@ function normalize(str){
 }
 
 function setDateRange(type){
+  if(currentRangeType === type){
+    currentRangeType = null;
+    syncDateInputs("", "");
+    highlightButton(null);
+    renderAll();
+    return;
+  }
+
+  currentRangeType = type;
+
   const now = new Date();
 
   let start = "";
@@ -86,7 +97,6 @@ function setDateRange(type){
   const e = formatInputDate(end);
 
   syncDateInputs(s, e);
-
   highlightButton(type);
   renderAll();
 }
