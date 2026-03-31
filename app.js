@@ -475,7 +475,7 @@ document.querySelectorAll(".monetizedToggle").forEach(el=>{
   });
 });
 
-document.querySelectorAll(".quick-buttons button").forEach(btn=>{
+document.querySelectorAll(".quick-buttons button[data-type]").forEach(btn=>{
   btn.addEventListener("click", ()=>{
     setDateRange(btn.dataset.type);
   });
@@ -497,16 +497,13 @@ document.querySelectorAll(".endDate").forEach(el=>{
   });
 });
 
-document.addEventListener("click", (e)=>{
-  if(!e.target.classList.contains("resetDate")) return;
-
-  currentRangeType = null;
-
-  syncDateInputs("", "");
-
-  document.querySelectorAll(".quick-buttons button").forEach(b=>{
-    b.classList.remove("active");
+document.querySelectorAll(".resetDate").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    currentRangeType = null;
+    syncDateInputs("", "");
+    document.querySelectorAll(".quick-buttons button").forEach(b=>{
+      b.classList.remove("active");
+    });
+    renderAll();
   });
-
-  renderAll();
 });
