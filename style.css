@@ -593,7 +593,7 @@ body.streams-light #artistsTable tr.artist-header td{
 }
 
 @media (max-width: 900px){
-  .toolbar input{
-    width:auto;
+  .summary-row-wrap{
+    grid-template-columns:1fr;
   }
 }
