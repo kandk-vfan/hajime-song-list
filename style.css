@@ -47,14 +47,19 @@ h1{
 
 .summary-row-wrap{
   display:flex;
-  align-items:stretch;
+  align-items:flex-start;
   gap:16px;
 }
 
 .filter-area{
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  gap:8px;
+  justify-content:flex-start;
+}
+
+.filter-message{
+  margin-top:4px;
 }
 
 .label{
