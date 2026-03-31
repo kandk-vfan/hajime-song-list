@@ -584,3 +584,9 @@ body.streams-light #artistsTable tr.artist-header td{
   width:160px;
   min-width:unset;
 }
+
+@media (max-width: 900px){
+  .toolbar{
+    justify-content:center;
+  }
+}
