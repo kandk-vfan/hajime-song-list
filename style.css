@@ -578,3 +578,9 @@ body.streams-light #artistsTable tr.artist-header td{
 #sortArtistsType{
   margin-right:-8px;
 }
+
+.startDate,
+.endDate{
+  width:140px;
+  min-width:unset;
+}
