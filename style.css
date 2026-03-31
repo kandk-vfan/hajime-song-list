@@ -505,3 +505,24 @@ iframe{
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+
+#artistsTable tr.artist-header td{
+  border-top:2px solid #3b82f6;
+  background:#020617;
+}
+
+#artistsTable tr.artist-song-row:last-of-type td{
+  border-bottom:2px solid #3b82f6;
+}
+
+#artistsTable tr.artist-header td{
+  padding-top:14px;
+}
+
+#artistsTable tr.artist-song-row td{
+  padding-bottom:10px;
+}
+
+#artistsTable tr.artist-header{
+  border-top:12px solid transparent;
+}
