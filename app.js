@@ -9,7 +9,7 @@ function getFilteredData(){
 
   const border = new Date("2026-02-24");
 
-  return data.filter(d => new Date(d.date) >= border);
+  return data.filter(d => new Date(d.date) > border);
 }
 
 function normalize(str){
