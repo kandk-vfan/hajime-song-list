@@ -5,6 +5,7 @@ body{
   padding:24px 16px;
   margin:0 auto;
   max-width:1450px;
+  box-sizing:border-box;
 }
 
 th{
