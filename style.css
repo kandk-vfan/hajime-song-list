@@ -505,3 +505,16 @@ iframe{
   text-overflow:ellipsis;
   white-space:nowrap;
 }
+
+#artistsTable{
+  table-layout: fixed;
+  width:100%;
+}
+
+#artistsTable td:nth-child(1){
+  width:15%;
+}
+
+#artistsTable td:nth-child(2){
+  width:85%;
+}
