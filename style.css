@@ -590,3 +590,9 @@ body.streams-light #artistsTable tr.artist-header td{
     justify-content:center;
   }
 }
+
+@media (max-width: 900px){
+  .toolbar input{
+    text-align:center;
+  }
+}
