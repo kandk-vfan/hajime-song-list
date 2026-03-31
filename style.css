@@ -591,9 +591,3 @@ body.streams-light #artistsTable tr.artist-header td{
     justify-content:center;
   }
 }
-
-@media (max-width: 900px){
-  .summary-row-wrap{
-    grid-template-columns:1fr;
-  }
-}
