@@ -18,6 +18,8 @@ body{
   background:#111827;
   font-weight:700;
   flex-wrap:wrap;
+  width:100%;
+  box-sizing:border-box;
 }
 
 body.streams-light .global-filter{
@@ -74,8 +76,8 @@ h1{
   display:flex;
   gap:12px;
   margin-bottom:20px;
-  flex-wrap:nowrap;
-  overflow-x:auto; 
+  width:100%;
+  box-sizing:border-box;
 }
 
 .tab-button{
@@ -102,6 +104,8 @@ h1{
 
 .section{
   margin-top:8px;
+  width:100%;
+  box-sizing:border-box;
 }
 
 .toolbar{
