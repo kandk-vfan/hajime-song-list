@@ -10,7 +10,7 @@ function getFilteredData(){
   let result = data;
 
   if(isMonetizedOnly){
-    result = result.filter(d => new Date(d.date) > MONETIZED_DATE);
+    result = result.filter(d => new Date(d.date + "T00:00:00") >= MONETIZED_DATE);
   }
 
   const startEl = document.querySelector(".startDate");
@@ -20,11 +20,13 @@ function getFilteredData(){
   const end = endEl ? endEl.value : "";
 
   if(start){
-    result = result.filter(d => d.date >= start);
+    const startDate = new Date(start + "T00:00:00");
+    result = result.filter(d => new Date(d.date + "T00:00:00") >= startDate);
   }
   
   if(end){
-    result = result.filter(d => d.date <= end);
+    const endDate = new Date(end + "T23:59:59");
+    result = result.filter(d => new Date(d.date + "T00:00:00") <= endDate);
   }
 
   return result;
