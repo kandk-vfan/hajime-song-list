@@ -32,12 +32,6 @@ h1{
   color:#94a3b8;
 }
 
-.filter-message{
-  font-size:13px;
-  color:#94a3b8;
-  margin-top:6px;
-}
-
 .summary{
   font-size:16px;
   font-weight:700;
@@ -47,21 +41,24 @@ h1{
   padding:8px 16px;
   border-radius:12px;
   border:1px solid #334155;
-  display:flex;
-  align-items:center;
+  display:inline-block;
   min-width:180px;
 }
 
 .summary-row-wrap{
   display:flex;
-  align-items:stretch;
+  align-items:flex-start;
   gap:16px;
 }
 
 .filter-area{
   display:flex;
   flex-direction:column;
-  justify-content:space-between;
+  gap:6px;
+}
+
+.filter-message{
+  margin-top:-4px;
 }
 
 .label{
