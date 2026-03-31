@@ -1,13 +1,6 @@
 let data = [];
-const MONETIZE_DATE = "2026-02-23";
-let monetizeOnly = false;
 
 const STORAGE_KEY = "tableTheme";
-
-function getFilteredData(){
-  if(!monetizeOnly) return data;
-  return data.filter(d => new Date(d.date) > new Date(MONETIZE_DATE));
-}
 
 function normalize(str){
   return str.replace(/^[\s　]+|[\s　]+$/g, "");
@@ -79,19 +72,17 @@ function renderAll(){
 }
 
 function renderSummary(){
-  const target = getFilteredData();
-
   const songSet=new Set();
   const artistSet=new Set();
 
-  target.forEach(d=>{
+  data.forEach(d=>{
     songSet.add(key(d));
     artistSet.add(d.artist);
   });
 
   const html = `
   <div class="summary-row"><span class="label">曲数 (ユニーク)</span><span class="value">${songSet.size}</span></div>
-  <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${target.length}</span></div>
+  <div class="summary-row"><span class="label">歌唱回数</span><span class="value">${data.length}</span></div>
   <div class="summary-row"><span class="label">アーティスト数</span><span class="value">${artistSet.size}</span></div>
   `;
 
@@ -101,10 +92,9 @@ function renderSummary(){
 }
 
 function renderSongs(){
-  const target = getFilteredData();
   const map={};
 
-  target.forEach(d=>{
+  data.forEach(d=>{
     const k=key(d);
     if(!map[k]) map[k]={title:d.title,artist:d.artist,count:0,latest:d};
     map[k].count++;
@@ -153,10 +143,9 @@ function renderSongs(){
 }
 
 function renderArtists(){
-  const target = getFilteredData();
   const map={};
 
-  target.forEach(d=>{
+  data.forEach(d=>{
     if(!map[d.artist]) map[d.artist]=new Set();
     map[d.artist].add(d.title);
   });
@@ -215,10 +204,9 @@ function renderArtists(){
 }
 
 function renderStreams(){
-  const target = getFilteredData();
   const map={};
 
-  target.forEach(d=>{
+  data.forEach(d=>{
     if(!map[d.videoId]){
       map[d.videoId]={title:d.videoTitle,latestDate:new Date(d.date),songs:[]};
     }
@@ -356,8 +344,3 @@ document.getElementById("sortSongsType").addEventListener("change", ()=>{
 document.getElementById("themeToggleSongs").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleStreams").addEventListener("change", toggleTheme);
 document.getElementById("themeToggleArtists").addEventListener("change", toggleTheme);
-
-document.getElementById("monetizeFilter").addEventListener("change", e=>{
-  monetizeOnly = e.target.checked;
-  renderAll();
-});
