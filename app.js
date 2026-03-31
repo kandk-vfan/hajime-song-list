@@ -6,13 +6,79 @@ const MONETIZED_DATE = new Date("2026-02-23");
 function getFilteredData(){
   const isMonetizedOnly = document.querySelector(".monetizedToggle")?.checked;
 
-  if(!isMonetizedOnly) return data;
+  let result = data;
 
-  return data.filter(d => new Date(d.date) > MONETIZED_DATE);
+  if(isMonetizedOnly){
+    result = result.filter(d => new Date(d.date) > MONETIZED_DATE);
+  }
+
+  const start = document.getElementById("startDate")?.value;
+  const end = document.getElementById("endDate")?.value;
+
+  if(start){
+    const s = new Date(start);
+    result = result.filter(d => new Date(d.date) >= s);
+  }
+
+  if(end){
+    const e = new Date(end);
+    result = result.filter(d => new Date(d.date) <= e);
+  }
+
+  return result;
 }
 
 function normalize(str){
   return str.replace(/^[\s　]+|[\s　]+$/g, "");
+}
+
+function setDateRange(type){
+  const now = new Date();
+
+  let start = "";
+  let end = "";
+
+  if(type === "thisMonth"){
+    start = new Date(now.getFullYear(), now.getMonth(), 1);
+    end = new Date();
+  }
+
+  if(type === "lastMonth"){
+    start = new Date(now.getFullYear(), now.getMonth()-1, 1);
+    end = new Date(now.getFullYear(), now.getMonth(), 0);
+  }
+
+  if(type === "thisYear"){
+    start = new Date(now.getFullYear(), 0, 1);
+    end = new Date();
+  }
+
+  if(type === "lastYear"){
+    start = new Date(now.getFullYear()-1, 0, 1);
+    end = new Date(now.getFullYear()-1, 11, 31);
+  }
+
+  if(type === "all"){
+    start = "";
+    end = "";
+  }
+
+  document.getElementById("startDate").value = formatInputDate(start);
+  document.getElementById("endDate").value = formatInputDate(end);
+
+  highlightButton(type);
+  renderAll();
+}
+
+function formatInputDate(d){
+  if(!d) return "";
+  return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,"0")}-${String(d.getDate()).padStart(2,"0")}`;
+}
+
+function highlightButton(type){
+  document.querySelectorAll(".quick-buttons button").forEach(btn=>{
+    btn.classList.toggle("active", btn.dataset.type === type);
+  });
 }
 
 function debounce(fn, delay=300){
@@ -64,6 +130,10 @@ fetch("data.json")
       title: normalize(d.title),
       artist: normalize(d.artist)
     }));
+
+    document.getElementById("startDate").value = "";
+    document.getElementById("endDate").value = "";
+
     renderAll();
     applyTheme();
     updateButtons();
@@ -372,4 +442,20 @@ document.querySelectorAll(".monetizedToggle").forEach(el=>{
 
     renderAll();
   });
+});
+
+document.querySelectorAll(".quick-buttons button").forEach(btn=>{
+  btn.addEventListener("click", ()=>{
+    setDateRange(btn.dataset.type);
+  });
+});
+
+document.getElementById("startDate").addEventListener("change", ()=>{
+  highlightButton(null);
+  renderAll();
+});
+
+document.getElementById("endDate").addEventListener("change", ()=>{
+  highlightButton(null);
+  renderAll();
 });
