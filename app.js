@@ -20,13 +20,11 @@ function getFilteredData(){
   const end = endEl ? endEl.value : "";
 
   if(start){
-    const s = new Date(start);
-    result = result.filter(d => new Date(d.date) >= s);
+    result = result.filter(d => d.date >= start);
   }
-
+  
   if(end){
-    const e = new Date(end);
-    result = result.filter(d => new Date(d.date) <= e);
+    result = result.filter(d => d.date <= end);
   }
 
   return result;
