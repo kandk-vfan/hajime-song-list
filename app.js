@@ -12,8 +12,11 @@ function getFilteredData(){
     result = result.filter(d => new Date(d.date) > MONETIZED_DATE);
   }
 
-  const start = document.getElementById("startDate")?.value;
-  const end = document.getElementById("endDate")?.value;
+  const startEl = document.getElementById("startDate");
+  const endEl = document.getElementById("endDate");
+
+  const start = startEl ? startEl.value : "";
+  const end = endEl ? endEl.value : "";
 
   if(start){
     const s = new Date(start);
@@ -450,12 +453,19 @@ document.querySelectorAll(".quick-buttons button").forEach(btn=>{
   });
 });
 
-document.getElementById("startDate").addEventListener("change", ()=>{
-  highlightButton(null);
-  renderAll();
-});
+const startInput = document.getElementById("startDate");
+const endInput = document.getElementById("endDate");
 
-document.getElementById("endDate").addEventListener("change", ()=>{
-  highlightButton(null);
-  renderAll();
-});
+if(startInput){
+  startInput.addEventListener("change", ()=>{
+    highlightButton(null);
+    renderAll();
+  });
+}
+
+if(endInput){
+  endInput.addEventListener("change", ()=>{
+    highlightButton(null);
+    renderAll();
+  });
+}
