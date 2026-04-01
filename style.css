@@ -37,6 +37,7 @@ h1{
   display:grid;
   grid-template-columns: max-content 1fr;
   row-gap:4px;
+  column-gap:0.4em;
   align-items:center;
 }
 
