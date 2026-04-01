@@ -94,6 +94,7 @@ h1{
   position:relative;
   text-align:left;
   padding-right:1em;
+  padding-left:1em;
   white-space:nowrap;
 }
 
@@ -102,8 +103,6 @@ h1{
   position:absolute;
   right:0;
   top:0;
-  padding-left:0.2em;
-  padding-right:0.2em;
 }
 
 .value{
