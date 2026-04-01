@@ -590,7 +590,9 @@ body.streams-light #artistsTable tr.artist-header td{
 .startDate,
 .endDate{
   width:160px;
-  min-width:unset;
+  min-width:160px;
+  max-width:160px;
+  box-sizing:border-box;
 }
 
 @media (max-width: 900px){
