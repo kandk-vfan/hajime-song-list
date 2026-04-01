@@ -34,11 +34,18 @@ h1{
 }
 
 .summary{
+  font-size:16px;
+  font-weight:700;
+  margin-bottom:0;
+  color:#cbd5f5;
+  background:#111827;
+  padding:8px 16px;
+  border-radius:12px;
+  border:1px solid #334155;
   display:grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns:max-content 1fr;
   row-gap:4px;
   column-gap:0.4em;
-  align-items:center;
 }
 
 .summary-row{
