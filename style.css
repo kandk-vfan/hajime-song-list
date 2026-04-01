@@ -50,9 +50,8 @@ h1{
 
 .summary-row{
   display:grid;
-  grid-template-columns: 11em 1fr;
+  grid-template-columns: max-content 1fr;
   align-items:center;
-  column-gap:0.3em;
 }
 
 .summary-row-wrap{
@@ -112,7 +111,6 @@ h1{
   position:absolute;
   right:0;
   top:0;
-  padding-right:0.4em;
 }
 
 .value{
