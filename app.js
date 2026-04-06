@@ -192,6 +192,8 @@ Promise.all([
     Object.entries(yomiJson || {}).map(([k, v]) => [normalize(k), normalize(v)])
   );
 
+  console.log("YOMI_MAP:", YOMI_MAP);
+  
   data = dataJson.map(d => ({
     ...d,
     title: normalize(d.title),
