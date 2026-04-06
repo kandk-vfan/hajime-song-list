@@ -4,6 +4,17 @@ let currentRangeType = null;
 const STORAGE_KEY = "tableTheme";
 const MONETIZED_DATE = new Date("2026-02-23");
 
+const YOMI_MAP = {
+  "大塚愛": "おおつかあい",
+  "大柴広己(もじゃ)": "おおしばひろき",
+  "泉こなた(平野綾)・柊かがみ(加藤英美里)・柊つかさ(福原香織)・高良みゆき(遠藤綾)": "いずみこなた",
+  "川崎鷹也": "かわさきたかや"
+};
+
+function getYomi(str){
+  return YOMI_MAP[str] || str;
+}
+
 function toLocalDateString(dateStr){
   const d = new Date(dateStr);
   const y = d.getFullYear();
@@ -240,9 +251,9 @@ function renderSongs(){
 
   arr.sort((a,b)=>{
     let res=0;
-    if(type==="artist") res=a.artist.localeCompare(b.artist);
+    if(type==="artist") res=getYomi(a.artist).localeCompare(getYomi(b.artist),"ja");
     else if(type==="count") res=a.count-b.count;
-    else res=a.title.localeCompare(b.title);
+    else res=getYomi(a.title).localeCompare(getYomi(b.title),"ja");
     return order==="desc"?-res:res;
   });
 
@@ -294,7 +305,7 @@ function renderArtists(){
     if(type==="count"){
       res = map[a].size - map[b].size;
     }else{
-      res = a.localeCompare(b);
+      res = getYomi(a).localeCompare(getYomi(b),"ja");
     }
 
     return order==="desc"?-res:res;
@@ -311,7 +322,9 @@ function renderArtists(){
 <td colspan="2">${a} (${count}曲)</td>
 </tr>`;
 
-    const songs = Array.from(map[a]).sort();
+    const songs = Array.from(map[a]).sort((a,b)=>
+      getYomi(a).localeCompare(getYomi(b),"ja")
+    );
 
     songs.forEach(t=>{
       html+=`
