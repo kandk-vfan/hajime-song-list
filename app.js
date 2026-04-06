@@ -1,30 +1,15 @@
 let data = [];
 let currentRangeType = null;
-let YOMI_MAP = {};
 
 const STORAGE_KEY = "tableTheme";
 const MONETIZED_DATE = new Date("2026-02-23");
 
-const JA_COLLATOR = new Intl.Collator("ja", {
-  sensitivity: "base",
-  numeric: true
-});
-
-function normalize(str){
-  return String(str ?? "").normalize("NFKC").replace(/^[\s　]+|[\s　]+$/g, "");
-}
+let YOMI_MAP = {};
 
 function getYomi(str){
+  if(!str) return "";
   const s = normalize(str);
-  return YOMI_MAP[s] || s;
-}
-
-function compareJa(a, b){
-  const ay = getYomi(a);
-  const by = getYomi(b);
-  const res = JA_COLLATOR.compare(ay, by);
-  if(res !== 0) return res;
-  return JA_COLLATOR.compare(normalize(a), normalize(b));
+  return YOMI_MAP[str] || str;
 }
 
 function toLocalDateString(dateStr){
@@ -188,12 +173,8 @@ Promise.all([
     .then(r => r.ok ? r.json() : {})
     .catch(() => ({}))
 ]).then(([dataJson, yomiJson])=>{
-  YOMI_MAP = Object.fromEntries(
-    Object.entries(yomiJson || {}).map(([k, v]) => [normalize(k), normalize(v)])
-  );
+  YOMI_MAP = yomiJson || {};
 
-  console.log("YOMI_MAP:", YOMI_MAP);
-  
   data = dataJson.map(d => ({
     ...d,
     title: normalize(d.title),
@@ -272,9 +253,9 @@ function renderSongs(){
 
   arr.sort((a,b)=>{
     let res=0;
-    if(type==="artist") res=compareJa(a.artist, b.artist);
+    if(type==="artist") res=getYomi(a.artist).localeCompare(getYomi(b.artist),"ja");
     else if(type==="count") res=a.count-b.count;
-    else res=compareJa(a.title, b.title);
+    else res=getYomi(a.title).localeCompare(getYomi(b.title),"ja");
     return order==="desc"?-res:res;
   });
 
@@ -326,7 +307,7 @@ function renderArtists(){
     if(type==="count"){
       res = map[a].size - map[b].size;
     }else{
-      res = compareJa(a, b);
+      res = getYomi(a).localeCompare(getYomi(b),"ja");
     }
 
     return order==="desc"?-res:res;
@@ -343,7 +324,9 @@ function renderArtists(){
 <td colspan="2">${a} (${count}曲)</td>
 </tr>`;
 
-    const songs = Array.from(map[a]).sort(compareJa);
+    const songs = Array.from(map[a]).sort((a,b)=>
+      getYomi(a).localeCompare(getYomi(b),"ja")
+    );
 
     songs.forEach(t=>{
       html+=`
