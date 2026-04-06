@@ -6,10 +6,15 @@ const MONETIZED_DATE = new Date("2026-02-23");
 
 let YOMI_MAP = {};
 
-function getYomi(str){
+function getYomi(str, artist){
   if(!str) return "";
+
   const s = normalize(str);
-  return YOMI_MAP[s] || s;
+  const a = normalize(artist || "");
+
+  const key = `${s}||${a}`;
+
+  return YOMI_MAP[key] || YOMI_MAP[s] || s;
 }
 
 function toLocalDateString(dateStr){
@@ -255,7 +260,7 @@ function renderSongs(){
     let res=0;
     if(type==="artist") res=getYomi(a.artist).localeCompare(getYomi(b.artist),"ja");
     else if(type==="count") res=a.count-b.count;
-    else res=getYomi(a.title).localeCompare(getYomi(b.title),"ja");
+    else res=getYomi(a.title, a.artist).localeCompare(getYomi(b.title, b.artist),"ja");
     return order==="desc"?-res:res;
   });
 
@@ -324,8 +329,8 @@ function renderArtists(){
 <td colspan="2">${a} (${count}曲)</td>
 </tr>`;
 
-    const songs = Array.from(map[a]).sort((a,b)=>
-      getYomi(a).localeCompare(getYomi(b),"ja")
+    const songs = Array.from(map[a]).sort((t1,t2)=>
+      getYomi(t1, a).localeCompare(getYomi(t2, a),"ja")
     );
 
     songs.forEach(t=>{
