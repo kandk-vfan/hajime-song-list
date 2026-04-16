@@ -263,7 +263,7 @@ function renderSongs(){
       res = getYomi(a.artist).localeCompare(getYomi(b.artist),"ja");
   
       if(res===0){
-        res = getYomi(a.title, a.artist).localeCompare(getYomi(b.title, b.artist),"ja");
+        return getYomi(a.title, a.artist).localeCompare(getYomi(b.title, b.artist),"ja");
       }
     }
   
@@ -271,7 +271,7 @@ function renderSongs(){
       res = a.count - b.count;
   
       if(res===0){
-        res = getYomi(a.title, a.artist).localeCompare(getYomi(b.title, b.artist),"ja");
+        return getYomi(a.title, a.artist).localeCompare(getYomi(b.title, b.artist),"ja");
       }
     }
   
