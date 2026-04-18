@@ -7,6 +7,21 @@ body{
   max-width:1350px;
 }
 
+.top-notice{
+  background:#fff3cd;
+  color:#856404;
+  padding:10px 16px;
+  text-align:center;
+  font-size:14px;
+  border-bottom:1px solid #ffeeba;
+}
+
+.top-notice a{
+  color:#856404;
+  font-weight:bold;
+  text-decoration:underline;
+}
+
 /* スクロールバーを常に表示 */
 html{
   overflow-y: scroll;
