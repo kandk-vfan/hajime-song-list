@@ -134,44 +134,46 @@ h1{
   top:0;
 }
 
-/* ===== 検索ブロック ===== */
+/* ===== 検索ブロック調整 ===== */
 .search-block{
   display:flex;
   align-items:center;
   gap:8px;
-  flex-wrap:wrap;
+  flex-wrap:nowrap;
 }
 
-/* inputサイズ維持 */
+/* inputが広がりすぎるのを抑制 */
 .search-block input{
-  min-width:320px;
+  width:260px;
+  min-width:0;
+  flex:0 0 auto;
 }
 
-/* クリアボタン位置調整 */
+/* クリアボタン */
 .search-block .clear-btn{
-  margin-right:8px;
+  margin-right:4px;
 }
 
-/* ===== オプション ===== */
+/* チェックボックス群 */
 .search-options{
   display:flex;
   align-items:center;
-  gap:10px;
+  gap:8px;
+  flex:0 0 auto;
 }
 
-/* ラベル整形 */
+/* ラベルをコンパクト化 */
 .search-options label{
   display:flex;
   align-items:center;
-  gap:4px;
-  font-size:13px;
+  gap:3px;
+  font-size:12px;
   white-space:nowrap;
 }
 
 /* チェックボックス微調整 */
 .search-options input[type="checkbox"]{
-  transform:scale(1.05);
-  cursor:pointer;
+  transform:scale(1);
 }
 
 .value{
