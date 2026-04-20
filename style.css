@@ -134,52 +134,6 @@ h1{
   top:0;
 }
 
-/* ===== 検索ブロック調整 ===== */
-.search-block{
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:nowrap;
-}
-
-/* ===== search-block専用の間隔リセット ===== */
-.search-block input{
-  margin-right:0;        /* ←負のmarginを無効化 */
-}
-
-.search-block .clear-btn{
-  margin-right:0;        /* ←24pxを無効化 */
-}
-
-/* ===== レイアウト ===== */
-.search-block{
-  display:flex;
-  align-items:center;
-  gap:8px;               /* ←全部ここで統一 */
-  flex-wrap:nowrap;
-}
-
-/* ===== チェックボックス ===== */
-.search-options{
-  display:flex;
-  align-items:center;
-  gap:6px;               /* ←やや詰める */
-}
-
-/* ラベル内の間隔 */
-.search-options label{
-  display:flex;
-  align-items:center;
-  gap:3px;
-  font-size:13px;
-  white-space:nowrap;
-}
-
-/* チェックボックス微調整 */
-.search-options input[type="checkbox"]{
-  transform:scale(1);
-}
-
 .value{
   text-align:right;
 }
