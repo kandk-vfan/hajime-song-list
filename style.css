@@ -134,19 +134,44 @@ h1{
   top:0;
 }
 
-/* 検索オプション（完全一致 / 大文字区別） */
+/* ===== 検索ブロック ===== */
+.search-block{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+/* inputサイズ維持 */
+.search-block input{
+  min-width:320px;
+}
+
+/* クリアボタン位置調整 */
+.search-block .clear-btn{
+  margin-right:8px;
+}
+
+/* ===== オプション ===== */
 .search-options{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:10px;
 }
 
+/* ラベル整形 */
 .search-options label{
   display:flex;
   align-items:center;
   gap:4px;
-  font-size:14px;
+  font-size:13px;
   white-space:nowrap;
+}
+
+/* チェックボックス微調整 */
+.search-options input[type="checkbox"]{
+  transform:scale(1.05);
+  cursor:pointer;
 }
 
 .value{
