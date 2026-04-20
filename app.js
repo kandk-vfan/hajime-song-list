@@ -61,8 +61,12 @@ function syncDateInputs(start, end){
   });
 }
 
-function normalize(str){
-  return str.replace(/^[\s　]+|[\s　]+$/g, "");
+function normalize(str, caseSensitive){
+  let s = (str || "").trim().replace(/\s+/g, " ");
+  if(!caseSensitive){
+    s = s.toLowerCase();
+  }
+  return s;
 }
 
 function setDateRange(type){
@@ -181,9 +185,7 @@ Promise.all([
   YOMI_MAP = yomiJson || {};
 
   data = dataJson.map(d => ({
-    ...d,
-    title: normalize(d.title),
-    artist: normalize(d.artist)
+    ...d
   }));
 
   document.querySelectorAll(".startDate").forEach(el=>el.value="");
@@ -193,6 +195,16 @@ Promise.all([
   applyTheme();
   updateButtons();
 });
+
+function match(text, keyword, exact, caseSensitive){
+  const t = normalize(text, caseSensitive);
+
+  if(exact){
+    return t === keyword;
+  }else{
+    return t.includes(keyword);
+  }
+}
 
 function key(d){
   return d.title + "||" + d.artist;
@@ -243,9 +255,17 @@ function renderSongs(){
 
   let arr=Object.values(map);
 
-  const keyword=document.getElementById("searchSongs").value.toLowerCase();
+  const input = document.getElementById("searchSongs").value;
+  const exact = document.getElementById("exactMatchSongs").checked;
+  const caseSensitive = document.getElementById("caseSensitiveSongs").checked;
+  
+  const keyword = normalize(input, caseSensitive);
+  
   if(keyword){
-    arr=arr.filter(s=>s.title.toLowerCase().includes(keyword)||s.artist.toLowerCase().includes(keyword));
+    arr = arr.filter(s =>
+      match(s.title, keyword, exact, caseSensitive) ||
+      match(s.artist, keyword, exact, caseSensitive)
+    );
   }
 
   if(arr.length===0){
@@ -310,10 +330,17 @@ function renderArtists(){
 
   let artists=Object.keys(map);
 
-  const keyword=document.getElementById("searchArtists").value.toLowerCase();
+  const input = document.getElementById("searchArtists").value;
+  const exact = document.getElementById("exactMatchArtists").checked;
+  const caseSensitive = document.getElementById("caseSensitiveArtists").checked;
+  
+  const keyword = normalize(input, caseSensitive);
 
   if(keyword){
-    artists=artists.filter(a=>a.toLowerCase().includes(keyword)||Array.from(map[a]).some(t=>t.toLowerCase().includes(keyword)));
+    artists = artists.filter(a =>
+      match(a, keyword, exact, caseSensitive) ||
+      Array.from(map[a]).some(t => match(t, keyword, exact, caseSensitive))
+    );
   }
 
   if(artists.length===0){
@@ -390,7 +417,11 @@ function renderStreams(){
     return order==="desc"?bDate-aDate:aDate-bDate;
   });
 
-  const keyword=document.getElementById("searchStreams").value.toLowerCase();
+  const input = document.getElementById("searchStreams").value;
+  const exact = document.getElementById("exactMatchStreams").checked;
+  const caseSensitive = document.getElementById("caseSensitiveStreams").checked;
+  
+  const keyword = normalize(input, caseSensitive);
   const container=document.getElementById("streamsContainer");
   container.innerHTML="";
 
@@ -412,7 +443,8 @@ function renderStreams(){
     
     function isMatch(s){
       if(!keyword) return false;
-      return s.title.toLowerCase().includes(keyword) || s.artist.toLowerCase().includes(keyword);
+      return match(s.title, keyword, exact, caseSensitive)
+          || match(s.artist, keyword, exact, caseSensitive);
     }
     
     if(keyword && !unique.some(isMatch)) return;
@@ -566,3 +598,15 @@ document.getElementById("clearArtists").addEventListener("click", ()=>{
   document.getElementById("searchArtists").value = "";
   renderArtists();
 });
+
+// songs
+document.getElementById("exactMatchSongs").addEventListener("change", renderSongs);
+document.getElementById("caseSensitiveSongs").addEventListener("change", renderSongs);
+
+// streams
+document.getElementById("exactMatchStreams").addEventListener("change", renderStreams);
+document.getElementById("caseSensitiveStreams").addEventListener("change", renderStreams);
+
+// artists
+document.getElementById("exactMatchArtists").addEventListener("change", renderArtists);
+document.getElementById("caseSensitiveArtists").addEventListener("change", renderArtists);
