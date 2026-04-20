@@ -142,32 +142,36 @@ h1{
   flex-wrap:nowrap;
 }
 
-/* inputが広がりすぎるのを抑制 */
+/* ===== search-block専用の間隔リセット ===== */
 .search-block input{
-  width:260px;
-  min-width:0;
-  flex:0 0 auto;
+  margin-right:0;        /* ←負のmarginを無効化 */
 }
 
-/* クリアボタン */
 .search-block .clear-btn{
-  margin-right:4px;
+  margin-right:0;        /* ←24pxを無効化 */
 }
 
-/* チェックボックス群 */
+/* ===== レイアウト ===== */
+.search-block{
+  display:flex;
+  align-items:center;
+  gap:8px;               /* ←全部ここで統一 */
+  flex-wrap:nowrap;
+}
+
+/* ===== チェックボックス ===== */
 .search-options{
   display:flex;
   align-items:center;
-  gap:8px;
-  flex:0 0 auto;
+  gap:6px;               /* ←やや詰める */
 }
 
-/* ラベルをコンパクト化 */
+/* ラベル内の間隔 */
 .search-options label{
   display:flex;
   align-items:center;
   gap:3px;
-  font-size:12px;
+  font-size:13px;
   white-space:nowrap;
 }
 
