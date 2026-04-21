@@ -25,16 +25,16 @@ body{
 .search-options{
   display:inline-flex;
   align-items:center;
-  gap:14px;
+  gap:5px;
   white-space:nowrap;
   flex:0 0 auto;
-  margin-left:-8px;
+  margin-left:-4px;
 }
 
 .search-options label{
   display:inline-flex;
   align-items:center;
-  gap:5px;
+  gap:4px;
   font-size:13px;
   cursor:pointer;
   margin:0;
@@ -48,6 +48,10 @@ body{
   padding:0;
   flex:0 0 auto;
   cursor:pointer;
+}
+
+.search-options + select{
+  margin-left:14px;
 }
 
 /* スクロールバーを常に表示 */
