@@ -54,6 +54,37 @@ body{
   margin-left:28px;
 }
 
+/* チップ化（ベース） */
+.search-options label{
+  padding:4px 10px;
+  border-radius:999px;
+  border:1px solid #6b7280;
+  background:#ffffff;
+  color:#1f2937;
+}
+
+/* ホバー */
+.search-options label:hover{
+  background:#f3f4f6;
+}
+
+/* チェック色（テーマ寄せ） */
+.search-options input[type="checkbox"]{
+  accent-color:#dc2626;
+}
+
+/* ON時（チップ全体） */
+.search-options label:has(input:checked){
+  background:#fecaca;
+  border-color:#dc2626;
+  color:#7f1d1d;
+}
+
+/* ON時（文字だけ強調） */
+.search-options input[type="checkbox"]:checked + span{
+  font-weight:600;
+}
+
 /* スクロールバーを常に表示 */
 html{
   overflow-y: scroll;
