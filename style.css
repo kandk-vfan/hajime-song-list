@@ -28,7 +28,7 @@ body{
   gap:10px;
   white-space:nowrap;
   flex:0 0 auto;
-  margin-left:-10px;
+  margin-left:-18px;
 }
 
 .search-options label{
@@ -51,7 +51,7 @@ body{
 }
 
 .search-options + select{
-  margin-left:24px;
+  margin-left:28px;
 }
 
 /* スクロールバーを常に表示 */
