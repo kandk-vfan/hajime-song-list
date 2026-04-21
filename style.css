@@ -23,24 +23,30 @@ body{
 }
 
 .search-options{
-  display:flex;
-  gap:12px;
+  display:inline-flex;
   align-items:center;
+  gap:14px;
   white-space:nowrap;
+  flex:0 0 auto;
   margin-left:-8px;
 }
 
 .search-options label{
-  display:flex;
+  display:inline-flex;
   align-items:center;
-  gap:4px;
+  gap:5px;
   font-size:13px;
   cursor:pointer;
+  margin:0;
 }
 
-.search-options input{
-  width:14px;
-  height:14px;
+.search-options input[type="checkbox"]{
+  width:16px;
+  height:16px;
+  min-width:16px;
+  margin:0;
+  padding:0;
+  flex:0 0 auto;
   cursor:pointer;
 }
 
@@ -209,7 +215,7 @@ input,select{
   font-size:14px;
 }
 
-input{
+input:not([type="checkbox"]){
   min-width:320px;
 }
 
@@ -616,7 +622,7 @@ body.streams-light #artistsTable tr.artist-header td{
   white-space:nowrap;
 }
 
-.toolbar input{
+.toolbar input:not([type="checkbox"]){
   margin-right:-8px;
 }
 
